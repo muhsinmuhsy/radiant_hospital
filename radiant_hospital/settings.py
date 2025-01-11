@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #
+    'rest_framework',
+    'rest_framework.authtoken',
     'core',
 ]
 
@@ -58,6 +60,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # corsheaders
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = 'radiant_hospital.urls'
@@ -136,6 +140,29 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 #AbstractBaseUser
 AUTH_USER_MODEL = "core.User"
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
+
+CORS_ALLOW_CREDENTIALS = env.list('CORS_ALLOW_CREDENTIALS')
+CORS_ALLOWED_ORIGINS = env.list('CORS_ALLOWED_ORIGINS')
+
+# CSRF Trusted Origins
+CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS')
+
+# HTTP Strict Transport Security (HSTS) Settings
+SECURE_HSTS_SECONDS = env.int('SECURE_HSTS_SECONDS')
+SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool('SECURE_HSTS_INCLUDE_SUBDOMAINS')
+SECURE_HSTS_PRELOAD = env.bool('SECURE_HSTS_PRELOAD')
+
+# SSL and Secure Cookie Settings
+SECURE_SSL_REDIRECT = env.bool('SECURE_SSL_REDIRECT')
+SESSION_COOKIE_SECURE = env.bool('SESSION_COOKIE_SECURE')
+CSRF_COOKIE_SECURE = env.bool('CSRF_COOKIE_SECURE')
+SESSION_COOKIE_HTTPONLY = env.bool('SESSION_COOKIE_HTTPONLY')
+CSRF_COOKIE_HTTPONLY = env.bool('CSRF_COOKIE_HTTPONLY')
