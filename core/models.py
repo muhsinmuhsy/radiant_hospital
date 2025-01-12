@@ -175,3 +175,36 @@ class Testimonial(models.Model):
     
     def __str__(self):
         return f"Testimonial by {self.name} for {self.treatment}"
+    
+    
+class SpecialitiesHero(models.Model):
+    simple_title = models.CharField(max_length=100, null=True, blank=True)
+    title = models.CharField(max_length=100)
+    description = models.TextField(null=True, blank=True)
+    Specialties_count = models.CharField(max_length=100, null=True, blank=True)
+    surgeries = models.CharField(max_length=100, null=True, blank=True)
+    years_exp_count = models.CharField(max_length=100, null=True, blank=True)
+    image = models.FileField(upload_to="specialities_hero", null=True, blank=True)
+    image_badge_one = models.CharField(max_length=100, null=True, blank=True)
+    image_badge_two = models.CharField(max_length=100, null=True, blank=True)
+    
+    class Meta:
+        verbose_name = "Specialities Hero"
+        verbose_name_plural = "Specialities Heros"
+
+    def __str__(self):
+        return self.title or 'No Title'
+
+class SpecialitiesMainHeader(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = "Specialities Main Header"
+        verbose_name_plural = "Specialities Main Headers"
+
+    def __str__(self):
+        return self.title or 'No Title'
