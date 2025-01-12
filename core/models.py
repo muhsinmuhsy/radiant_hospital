@@ -17,8 +17,8 @@ class HomeAboutHero(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
-        verbose_name = "About Us Hero Section"
-        verbose_name_plural = "About Us Hero Sections"
+        verbose_name = "Home About Us Hero Section"
+        verbose_name_plural = "Home About Us Hero Sections"
 
     def __str__(self):
         return self.title or 'No Title'
@@ -31,8 +31,8 @@ class HomeServiceHeader(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
-        verbose_name = "Service Header"
-        verbose_name_plural = "Service Headers"
+        verbose_name = "Home Service Header"
+        verbose_name_plural = "Home Service Headers"
 
     def __str__(self):
         return self.title or 'No Title'
@@ -61,8 +61,8 @@ class HomeConsultantHeader(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
-        verbose_name = "Consultant Header"
-        verbose_name_plural = "Consultant Headers"
+        verbose_name = "Home Consultant Header"
+        verbose_name_plural = "Home Consultant Headers"
 
     
 class Consultant(models.Model):
@@ -109,8 +109,8 @@ class HomeSpecialitiesHeader(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
-        verbose_name = "Specialities Header"
-        verbose_name_plural = "Specialities Headers"
+        verbose_name = "Home Specialities Header"
+        verbose_name_plural = "Home Specialities Headers"
         
     def __str__(self):
         return self.title or 'No Title'
@@ -120,6 +120,9 @@ class Speciality(models.Model):
     src = models.FileField(upload_to='services/', null=True, blank=True)
     title = models.CharField(max_length=255, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
+    about = models.TextField(null=True, blank=True)
+    stat =  models.TextField(null=True, blank=True)
+    benefits = models.JSONField(null=True, blank=True)
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -182,11 +185,14 @@ class SpecialitiesHero(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     Specialties_count = models.CharField(max_length=100, null=True, blank=True)
-    surgeries = models.CharField(max_length=100, null=True, blank=True)
+    surgeries_count = models.CharField(max_length=100, null=True, blank=True)
     years_exp_count = models.CharField(max_length=100, null=True, blank=True)
     image = models.FileField(upload_to="specialities_hero", null=True, blank=True)
     image_badge_one = models.CharField(max_length=100, null=True, blank=True)
     image_badge_two = models.CharField(max_length=100, null=True, blank=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
         verbose_name = "Specialities Hero"
@@ -205,6 +211,107 @@ class SpecialitiesMainHeader(models.Model):
     class Meta:
         verbose_name = "Specialities Main Header"
         verbose_name_plural = "Specialities Main Headers"
+
+    def __str__(self):
+        return self.title or 'No Title'
+    
+class ConsultantsMainHeader(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
+    mini_description =  models.CharField(max_length=255)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = "Consultants Main Header"
+        verbose_name_plural = "Consultants Main Headers"
+
+    def __str__(self):
+        return self.title or 'No Title'
+    
+class ContactHero(models.Model):
+    title_one = models.CharField(max_length=255)
+    title_two =  models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = "Contact Hero"
+        verbose_name_plural = "Contact Heros"
+
+    def __str__(self):
+        return self.title_one or 'No Title'
+    
+class QuickInfo(models.Model):
+    contact = models.CharField(max_length=255)
+    hours = models.CharField(max_length=255, null=True, blank=True)
+    location = models.CharField(max_length=255, null=True, blank=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = "QuickInfo"
+        verbose_name_plural = "QuickInfos"
+
+    def __str__(self):
+        return self.contact or 'No Contact'
+    
+class Mission(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = "Mission"
+        verbose_name_plural = "Missions"
+
+    def __str__(self):
+        return self.title or 'No Title'
+    
+class Vision(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = "Mission"
+        verbose_name_plural = "Missions"
+
+    def __str__(self):
+        return self.title or 'No Title'
+    
+class OurValues(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = "OurValue"
+        verbose_name_plural = "OurValues"
+
+    def __str__(self):
+        return self.title or 'No Title'
+
+class CTASection(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = "CTASection"
+        verbose_name_plural = "CTASections"
 
     def __str__(self):
         return self.title or 'No Title'

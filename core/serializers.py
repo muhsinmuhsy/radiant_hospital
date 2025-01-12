@@ -1,7 +1,8 @@
 from rest_framework import serializers
 from .models import (
     Service, Blog, Consultant, HomeAboutHero, HomeServiceHeader, Speciality, HomeSpecialitiesHeader,
-    HomeConsultantHeader, Equipment, EquipmentSpec, Testimonial
+    HomeConsultantHeader, Equipment, EquipmentSpec, Testimonial, SpecialitiesHero, SpecialitiesMainHeader,
+    ConsultantsMainHeader, ContactHero, QuickInfo, Mission, Vision, OurValues, CTASection
 )
 from django.utils.timesince import timesince
 
@@ -10,7 +11,6 @@ class HomeAboutHeroSerializer(serializers.ModelSerializer):
         model = HomeAboutHero
         fields = ['id', 'title', 'description']
 
-########################################################################################################
 
 class HomeServiceHeaderSerializer(serializers.ModelSerializer):
     class Meta:
@@ -22,7 +22,6 @@ class ServiceSerializer(serializers.ModelSerializer):
         model = Service
         fields = ['id', 'icon', 'title', 'description']
         
-########################################################################################################
 
 class HomeConsultantHeaderSerializer(serializers.ModelSerializer):
     class Meta:
@@ -34,7 +33,6 @@ class ConsultantSerializer(serializers.ModelSerializer):
         model = Consultant
         fields = ['id', 'image', 'name', 'specialty']
         
-########################################################################################################
 
 class BlogSerializer(serializers.ModelSerializer):
     class Meta:
@@ -54,7 +52,7 @@ class HomeSpecialitiesHeaderSerializer(serializers.ModelSerializer):
 class SpecialitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Speciality
-        fields = ['id', 'src', 'title', 'description']
+        fields = ['id', 'src', 'title', 'description', 'about', 'stat', 'benefits']
         
 class EquipmentSpecSerializer(serializers.ModelSerializer):
     class Meta:
@@ -104,8 +102,94 @@ class BlogReadonlySerializer(serializers.ModelSerializer):
         latest_blog = Blog.objects.latest('created_at')
         return obj == latest_blog
     
-    
 class TestimonialSerializer(serializers.ModelSerializer):
     class Meta:
         model = Testimonial
         fields = ['id', 'name', 'treatment', 'content', 'rating', 'date']
+        
+class SpecialitiesHeroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SpecialitiesHero
+        fields = [
+            'id',
+            'simple_title',
+            'title',
+            'description',
+            'Specialties_count',
+            'surgeries_count',
+            'years_exp_count',
+            'image',
+            'image_badge_one',
+            'image_badge_two',
+        ]
+
+class SpecialitiesMainHeaderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SpecialitiesMainHeader
+        fields = [
+            'id',
+            'title',
+            'description',
+        ]
+        
+
+class ConsultantsMainHeaderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ConsultantsMainHeader
+        fields = ['id', 'title', 'description', 'mini_description']
+
+class ContactHeroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ContactHero
+        fields = [
+            'id',
+            'title_one',
+            'title',
+            'description',
+        ]
+
+class QuickInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = QuickInfo
+        fields = [
+            'id',
+            'contact',
+            'hours',
+            'location',
+        ]
+
+class MissionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Mission
+        fields = [
+            'id',
+            'title',
+            'description',
+        ]
+
+class VisionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Vision
+        fields = [
+            'id',
+            'title',
+            'description',
+        ]
+
+class OurValuesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OurValues
+        fields = [
+            'id',
+            'title',
+            'description',
+        ]
+
+class CTASectionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CTASection
+        fields = [
+            'id',
+            'title',
+            'description',
+        ]

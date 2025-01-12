@@ -1,7 +1,8 @@
 from django.contrib import admin
 from .models import (
     Service, Blog, Consultant, HomeConsultantHeader, HomeAboutHero, HomeServiceHeader, Speciality, HomeSpecialitiesHeader, Equipment, EquipmentSpec,
-    Testimonial
+    Testimonial, SpecialitiesHero, SpecialitiesMainHeader, ConsultantsMainHeader,
+    ContactHero, QuickInfo, Mission, Vision, OurValues, CTASection
 )
 from django.contrib.auth.models import Group
 from rest_framework.authtoken.models import TokenProxy 
@@ -20,6 +21,7 @@ class HomeAboutHeroAdmin(admin.ModelAdmin):
     list_display = ['title', 'description']
     search_fields = ['title']
     ordering = ['-id']
+    readonly_fields = ['created_at', 'updated_at']
 
 @admin.register(HomeServiceHeader)
 class HomeServiceHeaderAdmin(admin.ModelAdmin):
@@ -27,12 +29,14 @@ class HomeServiceHeaderAdmin(admin.ModelAdmin):
     search_fields = ['title']
     list_filter = ['created_at']
     ordering = ['-id']
+    readonly_fields = ['created_at', 'updated_at']
 
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
     list_display = ['title', 'description']
     search_fields = ['title']
     ordering = ['-id']
+    readonly_fields = ['created_at', 'updated_at']
 
 @admin.register(Blog)
 class BlogAdmin(admin.ModelAdmin):
@@ -41,6 +45,7 @@ class BlogAdmin(admin.ModelAdmin):
     ordering = ['-id']
     search_fields = ['title', 'description']
     ordering = ['-id']
+    readonly_fields = ['created_at', 'updated_at']
 
 @admin.register(Consultant)
 class ConsultantAdmin(admin.ModelAdmin):
@@ -48,6 +53,7 @@ class ConsultantAdmin(admin.ModelAdmin):
     search_fields = ['name', 'specialty']
     list_filter = ['specialty']
     ordering = ['-id']
+    readonly_fields = ['created_at', 'updated_at']
     
 @admin.register(HomeConsultantHeader)
 class HomeConsultantHeaderAdmin(admin.ModelAdmin):
@@ -55,6 +61,7 @@ class HomeConsultantHeaderAdmin(admin.ModelAdmin):
     search_fields = ['title']
     list_filter = ['created_at']
     ordering = ['-id']
+    readonly_fields = ['created_at', 'updated_at']
     
 @admin.register(HomeSpecialitiesHeader)
 class HomeSpecialitiesHeaderAdmin(admin.ModelAdmin):
@@ -62,12 +69,14 @@ class HomeSpecialitiesHeaderAdmin(admin.ModelAdmin):
     search_fields = ['title']
     list_filter = ['created_at']
     ordering = ['-id']
+    readonly_fields = ['created_at', 'updated_at']
     
 @admin.register(Speciality)
 class SpecialityAdmin(admin.ModelAdmin):
     list_display = ['title', 'description']
     search_fields = ['title']
     ordering = ['-id']
+    readonly_fields = ['created_at', 'updated_at']
 
 class EquipmentSpecInline(admin.TabularInline):
     model = EquipmentSpec
@@ -86,3 +95,79 @@ class TestimonialAdmin(admin.ModelAdmin):
     list_display = ['name', 'treatment', 'rating', 'date']
     search_fields = ['name', 'treatment', 'content']
     list_filter = ['rating', 'date']
+    readonly_fields = ['created_at', 'updated_at']
+
+@admin.register(SpecialitiesHero)
+class SpecialitiesHeroAdmin(admin.ModelAdmin):
+    list_display = [
+        'id',
+        'title',
+        'simple_title',
+        'Specialties_count',
+        'surgeries_count',
+        'years_exp_count',
+    ]
+    search_fields = [
+        'title',
+        'simple_title',
+        'Specialties_count',
+    ]
+    list_filter = [
+        'Specialties_count',
+    ]
+    ordering = ['-id']
+    readonly_fields = ['created_at', 'updated_at']
+
+@admin.register(SpecialitiesMainHeader)
+class SpecialitiesMainHeaderAdmin(admin.ModelAdmin):
+    list_display = [
+        'id',
+        'title',
+        'description',
+        'created_at',
+        'updated_at',
+    ]
+    search_fields = [
+        'title',
+        'description',
+    ]
+    ordering = ['-id']
+    readonly_fields = ['created_at', 'updated_at']    
+    
+@admin.register(ConsultantsMainHeader)
+class ConsultantsMainHeaderAdmin(admin.ModelAdmin):
+    list_display = ['title', 'mini_description', 'created_at', 'updated_at']
+    search_fields = ['title', 'mini_description']
+    list_filter = ['created_at', 'updated_at']
+    ordering = ['-id',]
+    readonly_fields = ['created_at', 'updated_at']
+
+@admin.register(ContactHero)
+class ContactHeroAdmin(admin.ModelAdmin):
+    list_display = ['title_one', 'title_two', 'created_at', 'updated_at']
+    search_fields = ['title_one', 'title_two']
+
+@admin.register(QuickInfo)
+class QuickInfoAdmin(admin.ModelAdmin):
+    list_display = ['contact', 'hours', 'location', 'created_at', 'updated_at']
+    search_fields = ['contact', 'location']
+
+@admin.register(Mission)
+class MissionAdmin(admin.ModelAdmin):
+    list_display = ['title', 'created_at', 'updated_at']
+    search_fields = ['title']
+
+@admin.register(Vision)
+class VisionAdmin(admin.ModelAdmin):
+    list_display = ['title', 'created_at', 'updated_at']
+    search_fields = ['title']
+
+@admin.register(OurValues)
+class OurValuesAdmin(admin.ModelAdmin):
+    list_display = ['title', 'created_at', 'updated_at']
+    search_fields = ['title']
+
+@admin.register(CTASection)
+class CTASectionAdmin(admin.ModelAdmin):
+    list_display = ['title', 'created_at', 'updated_at']
+    search_fields = ['title']
