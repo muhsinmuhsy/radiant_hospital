@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework import status
-from .models import (
+from .models import ( User,
     Service, Blog, Consultant, HomeAboutHero, HomeServiceHeader, Speciality, 
     HomeSpecialitiesHeader, Testimonial, SpecialitiesHero, SpecialitiesMainHeader, 
     ConsultantsMainHeader, HomeConsultantHeader, Equipment,
