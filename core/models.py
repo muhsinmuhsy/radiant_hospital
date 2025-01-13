@@ -84,7 +84,7 @@ class Consultant(models.Model):
 class Blog(models.Model):
     image = models.FileField(upload_to='blogs/', null=True, blank=True)
     author = models.CharField(max_length=100, null=True, blank=True)
-    category = models.CharField(max_length=100, null=True, blank=True)
+    categories = models.JSONField(default=list)
     title = models.CharField(max_length=255, null=True, blank=True)
     date = models.DateTimeField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)
@@ -122,7 +122,7 @@ class Speciality(models.Model):
     description = models.TextField(null=True, blank=True)
     about = models.TextField(null=True, blank=True)
     stat =  models.TextField(null=True, blank=True)
-    benefits = models.JSONField(null=True, blank=True)
+    benefits = models.JSONField(default=list)
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -263,6 +263,7 @@ class QuickInfo(models.Model):
 class Mission(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
+    list = models.JSONField(default=list)
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -277,6 +278,7 @@ class Mission(models.Model):
 class Vision(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
+    list = models.JSONField(default=list)
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -291,7 +293,6 @@ class Vision(models.Model):
 class OurValues(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
-    
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
@@ -315,3 +316,64 @@ class CTASection(models.Model):
 
     def __str__(self):
         return self.title or 'No Title'
+    
+class AboutHero(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.title or 'No Title'
+
+class AboutStats(models.Model):
+    label = models.CharField(max_length=255)
+    number = models.CharField(max_length=255)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.label or 'No Label'
+    
+class AboutCoreValues(models.Model):
+    name = models.CharField(max_length=255)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.name or 'No Name'
+    
+class AboutFeatures(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.title or 'No Title'
+    
+class AboutAchievements(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.title or 'No Title'
+    
+class AboutContactDetails(models.Model):
+    phone = models.CharField(max_length=255)
+    mail = models.CharField(max_length=255)
+    location = models.CharField(max_length=255)
+    time = models.CharField(max_length=255)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.id or 'No Id'

@@ -2,7 +2,9 @@ from rest_framework import serializers
 from .models import (
     Service, Blog, Consultant, HomeAboutHero, HomeServiceHeader, Speciality, HomeSpecialitiesHeader,
     HomeConsultantHeader, Equipment, EquipmentSpec, Testimonial, SpecialitiesHero, SpecialitiesMainHeader,
-    ConsultantsMainHeader, ContactHero, QuickInfo, Mission, Vision, OurValues, CTASection
+    ConsultantsMainHeader, ContactHero, QuickInfo, Mission, Vision, OurValues, CTASection,
+    AboutHero, AboutStats, AboutCoreValues, 
+    AboutFeatures, AboutAchievements, AboutContactDetails
 )
 from django.utils.timesince import timesince
 
@@ -37,7 +39,7 @@ class ConsultantSerializer(serializers.ModelSerializer):
 class BlogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blog
-        fields = ['id', 'image', 'author', 'category', 'title', 'date', 'description', 'is_featured']
+        fields = ['id', 'image', 'author', 'categories', 'title', 'date', 'description', 'is_featured']
         
 class ConsultantSerializer(serializers.ModelSerializer):
     class Meta:
@@ -85,7 +87,7 @@ class BlogReadonlySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Blog
-        fields = ['id', 'image', 'author', 'category', 'title', 'date', 'description', 'is_featured', 'time_ago', 'is_latest']
+        fields = ['id', 'image', 'author', 'categories', 'title', 'date', 'description', 'is_featured', 'time_ago', 'is_latest']
 
     def get_time_ago(self, obj):
         """
@@ -193,3 +195,38 @@ class CTASectionSerializer(serializers.ModelSerializer):
             'title',
             'description',
         ]
+        
+class AboutHeroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AboutHero
+        fields = ['id', 'title', 'description']
+
+
+class AboutStatsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AboutStats
+        fields = ['id', 'label', 'number']
+
+
+class AboutCoreValuesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AboutCoreValues
+        fields = ['id', 'name']
+
+
+class AboutFeaturesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AboutFeatures
+        fields = ['id', 'title', 'description']
+
+
+class AboutAchievementsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AboutAchievements
+        fields = ['id', 'title', 'description']
+
+
+class AboutContactDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AboutContactDetails
+        fields = ['id', 'phone', 'mail', 'location', 'time']

@@ -8,7 +8,9 @@ from .models import ( User,
     Service, Blog, Consultant, HomeAboutHero, HomeServiceHeader, Speciality, 
     HomeSpecialitiesHeader, Testimonial, SpecialitiesHero, SpecialitiesMainHeader, 
     ConsultantsMainHeader, HomeConsultantHeader, Equipment,
-    ContactHero, QuickInfo, Mission, Vision, OurValues, CTASection
+    ContactHero, QuickInfo, Mission, Vision, OurValues, CTASection,
+    AboutHero, AboutStats, AboutCoreValues, 
+    AboutFeatures, AboutAchievements, AboutContactDetails
 )
 from .serializers import (
     ServiceSerializer, BlogSerializer, ConsultantSerializer, HomeAboutHeroSerializer, 
@@ -22,6 +24,8 @@ from .serializers import (
     VisionSerializer,
     OurValuesSerializer,
     CTASectionSerializer,
+    AboutHeroSerializer, AboutStatsSerializer, AboutCoreValuesSerializer,
+    AboutFeaturesSerializer, AboutAchievementsSerializer, AboutContactDetailsSerializer
 )
 
 # Login and Logout Views
@@ -88,11 +92,40 @@ class EquipmentViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     queryset = Equipment.objects.all().order_by('-id')
     serializer_class = EquipmentSerializer
+    
+class AboutHeroViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = AboutHero.objects.all().order_by('-id')
+    serializer_class = AboutHeroSerializer
 
-# Read-Only ViewSets (read-only access)
+class AboutStatsViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = AboutStats.objects.all().order_by('-id')
+    serializer_class = AboutStatsSerializer
+
+class AboutCoreValuesViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = AboutCoreValues.objects.all().order_by('-id')
+    serializer_class = AboutCoreValuesSerializer
+
+class AboutFeaturesViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = AboutFeatures.objects.all().order_by('-id')
+    serializer_class = AboutFeaturesSerializer
+
+class AboutAchievementsViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = AboutAchievements.objects.all().order_by('-id')
+    serializer_class = AboutAchievementsSerializer
+
+class AboutContactDetailsViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = AboutContactDetails.objects.all().order_by('-id')
+    serializer_class = AboutContactDetailsSerializer
+
+# Read-Only ViewSets (viewsets.read-only access)
 
 class HomeConsultantHeaderReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    permission_classes = [IsAuthenticated]
     queryset = HomeConsultantHeader.objects.all().order_by('-id')
     serializer_class = HomeConsultantHeaderSerializer
 
@@ -145,25 +178,49 @@ class SpecialitiesReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = SpecialitySerializer
 
 class ContactHeroReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = ContactHero.objects.all()
+    queryset = ContactHero.objects.all().order_by('-id')
     serializer_class = ContactHeroSerializer
 
 class QuickInfoReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = QuickInfo.objects.all()
+    queryset = QuickInfo.objects.all().order_by('-id')
     serializer_class = QuickInfoSerializer
 
 class MissionReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Mission.objects.all()
+    queryset = Mission.objects.all().order_by('-id')
     serializer_class = MissionSerializer
 
 class VisionReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Vision.objects.all()
+    queryset = Vision.objects.all().order_by('-id')
     serializer_class = VisionSerializer
 
 class OurValuesReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = OurValues.objects.all()
+    queryset = OurValues.objects.all().order_by('-id')
     serializer_class = OurValuesSerializer
 
 class CTASectionReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = CTASection.objects.all()
+    queryset = CTASection.objects.all().order_by('-id')
     serializer_class = CTASectionSerializer
+    
+class AboutHeroReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = AboutHero.objects.all().order_by('-id')
+    serializer_class = AboutHeroSerializer
+
+class AboutStatsReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = AboutStats.objects.all().order_by('-id')
+    serializer_class = AboutStatsSerializer
+
+class AboutCoreValuesReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = AboutCoreValues.objects.all().order_by('-id')
+    serializer_class = AboutCoreValuesSerializer
+
+class AboutFeaturesReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = AboutFeatures.objects.all().order_by('-id')
+    serializer_class = AboutFeaturesSerializer
+
+class AboutAchievementsReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = AboutAchievements.objects.all().order_by('-id')
+    serializer_class = AboutAchievementsSerializer
+
+class AboutContactDetailsReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = AboutContactDetails.objects.all().order_by('-id')
+    serializer_class = AboutContactDetailsSerializer

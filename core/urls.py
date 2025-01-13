@@ -9,13 +9,17 @@ from .views import (
     EquipmentViewSet, EquipmentReadOnlyViewSet, TestimonialReadOnlyViewSet,
     SpecialitiesMainHeaderReadOnlyViewSet, SpecialitiesHeroReadOnlyViewSet, ConsultantsMainHeaderReadOnlyViewSet,
     ContactHeroReadOnlyViewSet, QuickInfoReadOnlyViewSet, MissionReadOnlyViewSet,
-    VisionReadOnlyViewSet, OurValuesReadOnlyViewSet, CTASectionReadOnlyViewSet
+    VisionReadOnlyViewSet, OurValuesReadOnlyViewSet, CTASectionReadOnlyViewSet,
+    AboutHeroViewSet, AboutStatsViewSet, AboutCoreValuesViewSet,
+    AboutFeaturesViewSet, AboutAchievementsViewSet, AboutContactDetailsViewSet,
+    AboutHeroReadOnlyViewSet, AboutStatsReadOnlyViewSet, AboutCoreValuesReadOnlyViewSet,
+    AboutFeaturesReadOnlyViewSet, AboutAchievementsReadOnlyViewSet, AboutContactDetailsReadOnlyViewSet
 )
 
 router = DefaultRouter()
 
 # Register CRUD viewsets
-router.register(r'about-hero', HomeAboutHeroViewSet, basename='about-hero')
+router.register(r'home-about-hero', HomeAboutHeroViewSet, basename='home-about-hero')
 router.register(r'services', ServiceViewSet, basename='service')
 router.register(r'blogs', BlogViewSet, basename='blog')
 router.register(r'consultants', ConsultantViewSet, basename='consultant')
@@ -23,8 +27,15 @@ router.register(r'specialities', SpecialitiesViewSet, basename='specialities')
 router.register(r'home-service-header', HomeServiceHeaderViewSet, basename='service-header')
 router.register(r'equipments', EquipmentViewSet, basename='equipment')
 
+router.register(r'about-hero', AboutHeroViewSet, basename='about-hero')
+router.register(r'about-stats', AboutStatsViewSet, basename='about-stats')
+router.register(r'about-core-values', AboutCoreValuesViewSet, basename='about-core-values')
+router.register(r'about-features', AboutFeaturesViewSet, basename='about-features')
+router.register(r'about-achievements', AboutAchievementsViewSet, basename='about-achievements')
+router.register(r'about-contact-details', AboutContactDetailsViewSet, basename='about-contact-details')
+
 # Register read-only viewsets
-router.register(r'readonly-home-about-hero', HomeAboutHeroReadOnlyViewSet, basename='readonly-about-hero')
+router.register(r'readonly-home-about-hero', HomeAboutHeroReadOnlyViewSet, basename='readonly-home-about-hero')
 router.register(r'readonly-services', ServiceReadOnlyViewSet, basename='readonly-service')
 router.register(r'readonly-blogs', BlogReadOnlyViewSet, basename='readonly-blog')
 router.register(r'readonly-consultants', ConsultantReadOnlyViewSet, basename='readonly-consultant')
@@ -44,6 +55,13 @@ router.register(r'readonly-mission', MissionReadOnlyViewSet, basename='readonly-
 router.register(r'readonly-vision', VisionReadOnlyViewSet, basename='readonly-vision')
 router.register(r'readonly-our-values', OurValuesReadOnlyViewSet, basename='readonly-our-values')
 router.register(r'readonly-cta-section', CTASectionReadOnlyViewSet, basename='readonly-cta-section')
+
+router.register(r'readonly-about-hero', AboutHeroReadOnlyViewSet, basename='readonly-about-hero')
+router.register(r'readonly-about-stats', AboutStatsReadOnlyViewSet, basename='readonly-about-stats')
+router.register(r'readonly-about-core-values', AboutCoreValuesReadOnlyViewSet, basename='readonly-about-core-values')
+router.register(r'readonly-about-features', AboutFeaturesReadOnlyViewSet, basename='readonly-about-features')
+router.register(r'readonly-about-achievements', AboutAchievementsReadOnlyViewSet, basename='readonly-about-achievements')
+router.register(r'readonly-about-contact-details', AboutContactDetailsReadOnlyViewSet, basename='readonly-about-contact-details')
 
 
 urlpatterns = [

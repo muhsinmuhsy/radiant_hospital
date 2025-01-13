@@ -2,7 +2,12 @@ from django.contrib import admin
 from .models import (
     Service, Blog, Consultant, HomeConsultantHeader, HomeAboutHero, HomeServiceHeader, Speciality, HomeSpecialitiesHeader, Equipment, EquipmentSpec,
     Testimonial, SpecialitiesHero, SpecialitiesMainHeader, ConsultantsMainHeader,
-    ContactHero, QuickInfo, Mission, Vision, OurValues, CTASection
+    ContactHero, QuickInfo, Mission, Vision, OurValues, CTASection,
+    AboutStats,
+    AboutCoreValues,
+    AboutFeatures,
+    AboutAchievements,
+    AboutContactDetails,
 )
 from django.contrib.auth.models import Group
 from rest_framework.authtoken.models import TokenProxy 
@@ -83,7 +88,7 @@ class EquipmentSpecInline(admin.TabularInline):
     extra = 1
 
 class EquipmentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'short_desc', 'color')
+    list_display = ['name', 'short_desc', 'color']
     inlines = [EquipmentSpecInline]
     search_fields = ['name']
     ordering = ['-id']
@@ -171,3 +176,43 @@ class OurValuesAdmin(admin.ModelAdmin):
 class CTASectionAdmin(admin.ModelAdmin):
     list_display = ['title', 'created_at', 'updated_at']
     search_fields = ['title']
+
+# Admin for AboutStats
+@admin.register(AboutStats)
+class AboutStatsAdmin(admin.ModelAdmin):
+    list_display = ['label', 'number', 'created_at', 'updated_at']  # Fields to display in the list view
+    search_fields = ['label']  # Searchable fields
+    list_filter = ['created_at', 'updated_at']  # Filters
+    ordering = ['-created_at']  # Default ordering
+
+# Admin for AboutCoreValues
+@admin.register(AboutCoreValues)
+class AboutCoreValuesAdmin(admin.ModelAdmin):
+    list_display = ['name', 'created_at', 'updated_at']
+    search_fields = ['name']
+    list_filter = ['created_at', 'updated_at']
+    ordering = ['-created_at']
+
+# Admin for AboutFeatures
+@admin.register(AboutFeatures)
+class AboutFeaturesAdmin(admin.ModelAdmin):
+    list_display = ['title', 'description', 'created_at', 'updated_at']
+    search_fields = ['title', 'description']
+    list_filter = ['created_at', 'updated_at']
+    ordering = ['-created_at']
+
+# Admin for AboutAchievements
+@admin.register(AboutAchievements)
+class AboutAchievementsAdmin(admin.ModelAdmin):
+    list_display = ['title', 'description', 'created_at', 'updated_at']
+    search_fields = ['title', 'description']
+    list_filter = ['created_at', 'updated_at']
+    ordering = ['-created_at']
+
+# Admin for AboutContactDetails
+@admin.register(AboutContactDetails)
+class AboutContactDetailsAdmin(admin.ModelAdmin):
+    list_display = ['phone', 'mail', 'location', 'time', 'created_at', 'updated_at']
+    search_fields = ['phone', 'mail', 'location', 'time']
+    list_filter = ['created_at', 'updated_at']
+    ordering = ['-created_at']
