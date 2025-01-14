@@ -10,7 +10,7 @@ from .models import ( User,
     ConsultantsMainHeader, HomeConsultantHeader, Equipment,
     ContactHero, QuickInfo, Mission, Vision, OurValues, CTASection,
     AboutHero, AboutStats, AboutCoreValues, 
-    AboutFeatures, AboutAchievements, AboutContactDetails
+    AboutFeatures, AboutAchievements, AboutContactDetails, DescCarousal, MobCarousal
 )
 from .serializers import (
     ServiceSerializer, BlogSerializer, ConsultantSerializer, HomeAboutHeroSerializer, 
@@ -25,7 +25,8 @@ from .serializers import (
     OurValuesSerializer,
     CTASectionSerializer,
     AboutHeroSerializer, AboutStatsSerializer, AboutCoreValuesSerializer,
-    AboutFeaturesSerializer, AboutAchievementsSerializer, AboutContactDetailsSerializer
+    AboutFeaturesSerializer, AboutAchievementsSerializer, AboutContactDetailsSerializer,
+    DescCarousalSerializer, MobCarousalSerializer
 )
 
 # Login and Logout Views
@@ -124,6 +125,14 @@ class AboutContactDetailsViewSet(viewsets.ModelViewSet):
     serializer_class = AboutContactDetailsSerializer
 
 # Read-Only ViewSets (viewsets.read-only access)
+
+class DescCarousalReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = DescCarousal.objects.all().order_by('-id')
+    serializer_class = DescCarousalSerializer
+    
+class MobCarousalReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = MobCarousal.objects.all().order_by('-id')
+    serializer_class = MobCarousalSerializer
 
 class HomeConsultantHeaderReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = HomeConsultantHeader.objects.all().order_by('-id')

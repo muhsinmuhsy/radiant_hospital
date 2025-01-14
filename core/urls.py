@@ -2,6 +2,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import ( 
     LoginView, LogoutView,
+    MobCarousalReadOnlyViewSet, DescCarousalReadOnlyViewSet,
     ServiceViewSet, BlogViewSet, ConsultantViewSet, HomeAboutHeroViewSet,
     ServiceReadOnlyViewSet, BlogReadOnlyViewSet, HomeAboutHeroReadOnlyViewSet,
     HomeServiceHeaderViewSet, SpecialitiesViewSet, HomeServiceHeaderReadOnlyViewSet, SpecialitiesReadOnlyViewSet,
@@ -35,6 +36,8 @@ router.register(r'about-achievements', AboutAchievementsViewSet, basename='about
 router.register(r'about-contact-details', AboutContactDetailsViewSet, basename='about-contact-details')
 
 # Register read-only viewsets
+router.register(r'readonly-desc-carousal', DescCarousalReadOnlyViewSet, basename='readonly-desc-carousal')
+router.register(r'readonly-mob-carousal', MobCarousalReadOnlyViewSet, basename='readonly-mob-carousal')
 router.register(r'readonly-home-about-hero', HomeAboutHeroReadOnlyViewSet, basename='readonly-home-about-hero')
 router.register(r'readonly-services', ServiceReadOnlyViewSet, basename='readonly-service')
 router.register(r'readonly-blogs', BlogReadOnlyViewSet, basename='readonly-blog')

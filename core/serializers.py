@@ -4,15 +4,24 @@ from .models import (
     HomeConsultantHeader, Equipment, EquipmentSpec, Testimonial, SpecialitiesHero, SpecialitiesMainHeader,
     ConsultantsMainHeader, ContactHero, QuickInfo, Mission, Vision, OurValues, CTASection,
     AboutHero, AboutStats, AboutCoreValues, 
-    AboutFeatures, AboutAchievements, AboutContactDetails
+    AboutFeatures, AboutAchievements, AboutContactDetails, DescCarousal, MobCarousal
 )
 from django.utils.timesince import timesince
+
+class DescCarousalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DescCarousal
+        fields = ['id', 'image']
+        
+class MobCarousalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MobCarousal
+        fields = ['id', 'image']
 
 class HomeAboutHeroSerializer(serializers.ModelSerializer):
     class Meta:
         model = HomeAboutHero
         fields = ['id', 'title', 'description']
-
 
 class HomeServiceHeaderSerializer(serializers.ModelSerializer):
     class Meta:

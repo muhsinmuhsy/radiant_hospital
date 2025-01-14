@@ -9,6 +9,12 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
     
+class DescCarousal(models.Model):
+    image = models.FileField(upload_to="desc-carousal")
+    
+class MobCarousal(models.Model):
+    image = models.FileField(upload_to="mob-carousal")
+    
 class HomeAboutHero(models.Model):
     title = models.CharField(max_length=255, null=True, blank=True)
     description = models.TextField(null=True, blank=True)

@@ -8,6 +8,7 @@ from .models import (
     AboutFeatures,
     AboutAchievements,
     AboutContactDetails,
+    DescCarousal, MobCarousal
 )
 from django.contrib.auth.models import Group
 from rest_framework.authtoken.models import TokenProxy 
@@ -21,6 +22,14 @@ admin.site.index_title = "Welcome to Radiant Hospital Administration"
 admin.site.unregister(Group)
 admin.site.unregister(TokenProxy)
 
+@admin.register(DescCarousal)
+class DescCarousalAdmin(admin.ModelAdmin):
+    list_display = ['id']
+    
+@admin.register(MobCarousal)
+class MobCarousalAdmin(admin.ModelAdmin):
+    list_display = ['id']
+    
 @admin.register(HomeAboutHero)
 class HomeAboutHeroAdmin(admin.ModelAdmin):
     list_display = ['title', 'description']
@@ -216,3 +225,5 @@ class AboutContactDetailsAdmin(admin.ModelAdmin):
     search_fields = ['phone', 'mail', 'location', 'time']
     list_filter = ['created_at', 'updated_at']
     ordering = ['-created_at']
+
+    
