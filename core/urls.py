@@ -14,7 +14,21 @@ from .views import (
     AboutHeroViewSet, AboutStatsViewSet, AboutCoreValuesViewSet,
     AboutFeaturesViewSet, AboutAchievementsViewSet, AboutContactDetailsViewSet,
     AboutHeroReadOnlyViewSet, AboutStatsReadOnlyViewSet, AboutCoreValuesReadOnlyViewSet,
-    AboutFeaturesReadOnlyViewSet, AboutAchievementsReadOnlyViewSet, AboutContactDetailsReadOnlyViewSet
+    AboutFeaturesReadOnlyViewSet, AboutAchievementsReadOnlyViewSet, AboutContactDetailsReadOnlyViewSet,
+    DescCarousalViewSet,
+    MobCarousallViewSet,
+    HomeConsultantHeaderViewSet,
+    HomeSpecialitiesHeaderViewSet,
+    TestimonialViewSet,
+    SpecialitiesHeroViewSet,
+    SpecialitiesMainHeaderViewSet,
+    ConsultantsMainHeaderViewSet,
+    ContactHeroViewSet,
+    QuickInfoViewSet,
+    MissionViewSet,
+    VisionViewSet,
+    OurValuesViewSet,
+    CTASectionViewSet
 )
 
 router = DefaultRouter()
@@ -34,6 +48,23 @@ router.register(r'about-core-values', AboutCoreValuesViewSet, basename='about-co
 router.register(r'about-features', AboutFeaturesViewSet, basename='about-features')
 router.register(r'about-achievements', AboutAchievementsViewSet, basename='about-achievements')
 router.register(r'about-contact-details', AboutContactDetailsViewSet, basename='about-contact-details')
+
+# Register missing ViewSets
+router.register(r'desc-carousal', DescCarousalViewSet, basename='desc-carousal')
+router.register(r'mob-carousal', MobCarousallViewSet, basename='mob-carousal')
+router.register(r'home-consultant-header', HomeConsultantHeaderViewSet, basename='home-consultant-header')
+router.register(r'home-specialities-header', HomeSpecialitiesHeaderViewSet, basename='home-specialities-header')
+router.register(r'testimonials', TestimonialViewSet, basename='testimonials')
+router.register(r'specialities-hero', SpecialitiesHeroViewSet, basename='specialities-hero')
+router.register(r'specialities-main-header', SpecialitiesMainHeaderViewSet, basename='specialities-main-header')
+router.register(r'consultants-main-header', ConsultantsMainHeaderViewSet, basename='consultants-main-header')
+router.register(r'contact-hero', ContactHeroViewSet, basename='contact-hero')
+router.register(r'quick-info', QuickInfoViewSet, basename='quick-info')
+router.register(r'mission', MissionViewSet, basename='mission')
+router.register(r'vision', VisionViewSet, basename='vision')
+router.register(r'our-values', OurValuesViewSet, basename='our-values')
+router.register(r'cta-section', CTASectionViewSet, basename='cta-section')
+
 
 # Register read-only viewsets
 router.register(r'readonly-desc-carousal', DescCarousalReadOnlyViewSet, basename='readonly-desc-carousal')
