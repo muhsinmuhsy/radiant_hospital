@@ -49,7 +49,6 @@ router.register(r'about-features', AboutFeaturesViewSet, basename='about-feature
 router.register(r'about-achievements', AboutAchievementsViewSet, basename='about-achievements')
 router.register(r'about-contact-details', AboutContactDetailsViewSet, basename='about-contact-details')
 
-# Register missing ViewSets
 router.register(r'desc-carousal', DescCarousalViewSet, basename='desc-carousal')
 router.register(r'mob-carousal', MobCarousallViewSet, basename='mob-carousal')
 router.register(r'home-consultant-header', HomeConsultantHeaderViewSet, basename='home-consultant-header')

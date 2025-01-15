@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('simple_title', models.CharField(blank=True, max_length=100, null=True)),
                 ('title', models.CharField(max_length=100)),
                 ('description', models.TextField(blank=True, null=True)),
-                ('Specialties_count', models.CharField(blank=True, max_length=100, null=True)),
+                ('specialties_count', models.CharField(blank=True, max_length=100, null=True)),
                 ('surgeries', models.CharField(blank=True, max_length=100, null=True)),
                 ('years_exp_count', models.CharField(blank=True, max_length=100, null=True)),
                 ('image', models.FileField(blank=True, null=True, upload_to='specialities_hero')),

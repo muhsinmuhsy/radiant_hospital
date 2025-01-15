@@ -126,7 +126,7 @@ class SpecialitiesHeroSerializer(serializers.ModelSerializer):
             'simple_title',
             'title',
             'description',
-            'Specialties_count',
+            'specialties_count',
             'surgeries_count',
             'years_exp_count',
             'image',

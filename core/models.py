@@ -190,7 +190,7 @@ class SpecialitiesHero(models.Model):
     simple_title = models.CharField(max_length=100, null=True, blank=True)
     title = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
-    Specialties_count = models.CharField(max_length=100, null=True, blank=True)
+    specialties_count = models.CharField(max_length=100, null=True, blank=True)
     surgeries_count = models.CharField(max_length=100, null=True, blank=True)
     years_exp_count = models.CharField(max_length=100, null=True, blank=True)
     image = models.FileField(upload_to="specialities_hero", null=True, blank=True)

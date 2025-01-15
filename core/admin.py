@@ -117,17 +117,17 @@ class SpecialitiesHeroAdmin(admin.ModelAdmin):
         'id',
         'title',
         'simple_title',
-        'Specialties_count',
+        'specialties_count',
         'surgeries_count',
         'years_exp_count',
     ]
     search_fields = [
         'title',
         'simple_title',
-        'Specialties_count',
+        'specialties_count',
     ]
     list_filter = [
-        'Specialties_count',
+        'specialties_count',
     ]
     ordering = ['-id']
     readonly_fields = ['created_at', 'updated_at']
