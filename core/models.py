@@ -90,7 +90,7 @@ class Consultant(models.Model):
 class Blog(models.Model):
     image = models.FileField(upload_to='blogs/', null=True, blank=True)
     author = models.CharField(max_length=100, null=True, blank=True)
-    categories = models.JSONField(default=list)
+    categories = models.JSONField(default=list, null=True, blank=True)
     title = models.CharField(max_length=255, null=True, blank=True)
     date = models.DateTimeField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)
@@ -106,6 +106,17 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title or 'No Title'
+    
+    def full_clean(self, *args, **kwargs):
+        # If this blog is being set as featured, ensure others are not featured
+        if self.is_featured:
+            Blog.objects.filter(is_featured=True).exclude(id=self.id).update(is_featured=False)
+        super().full_clean(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        # Ensure full_clean is called before saving
+        self.full_clean()
+        super().save(*args, **kwargs)
     
 class HomeSpecialitiesHeader(models.Model):
     title = models.CharField(max_length=255, null=True, blank=True)
@@ -128,7 +139,7 @@ class Speciality(models.Model):
     description = models.TextField(null=True, blank=True)
     about = models.TextField(null=True, blank=True)
     stat =  models.TextField(null=True, blank=True)
-    benefits = models.JSONField(default=list)
+    benefits = models.JSONField(default=list, null=True, blank=True)
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -269,7 +280,7 @@ class QuickInfo(models.Model):
 class Mission(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
-    list = models.JSONField(default=list)
+    list = models.JSONField(default=list, null=True, blank=True)
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -284,7 +295,7 @@ class Mission(models.Model):
 class Vision(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
-    list = models.JSONField(default=list)
+    list = models.JSONField(default=list, null=True, blank=True)
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
