@@ -155,7 +155,7 @@ class ContactHeroSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'title_one',
-            'title',
+            'title_two',
             'description',
         ]
 
