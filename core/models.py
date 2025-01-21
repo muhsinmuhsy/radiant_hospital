@@ -10,10 +10,10 @@ class User(AbstractUser):
         return self.username
     
 class DescCarousal(models.Model):
-    image = models.FileField(upload_to="desc-carousal")
+    image = models.FileField(upload_to="desc-carousal/")
     
 class MobCarousal(models.Model):
-    image = models.FileField(upload_to="mob-carousal")
+    image = models.FileField(upload_to="mob-carousal/")
     
 class HomeAboutHero(models.Model):
     title = models.CharField(max_length=255, null=True, blank=True)
@@ -134,7 +134,7 @@ class HomeSpecialitiesHeader(models.Model):
 
     
 class Speciality(models.Model):
-    src = models.FileField(upload_to='services/', null=True, blank=True)
+    src = models.FileField(upload_to='speciality/', null=True, blank=True)
     title = models.CharField(max_length=255, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     about = models.TextField(null=True, blank=True)
@@ -156,7 +156,7 @@ class Equipment(models.Model):
     name = models.CharField(max_length=255)
     short_desc = models.CharField(max_length=255)
     description = models.TextField()
-    image = models.ImageField(upload_to='equipment_images/')
+    image = models.ImageField(upload_to='equipment/')
     color = models.CharField(max_length=50)
     
     class Meta:
