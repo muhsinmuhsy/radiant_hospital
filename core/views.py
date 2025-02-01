@@ -56,37 +56,37 @@ class LogoutView(APIView):
 
 class DescCarousalViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = DescCarousal.objects.all().order_by('-id')
+    queryset = DescCarousal.objects.all()
     serializer_class = DescCarousalSerializer
 
 class MobCarousallViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = MobCarousal.objects.all().order_by('-id')
+    queryset = MobCarousal.objects.all()
     serializer_class = MobCarousalSerializer
 
 class HomeAboutHeroViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = HomeAboutHero.objects.all().order_by('-id')
+    queryset = HomeAboutHero.objects.all()
     serializer_class = HomeAboutHeroSerializer
 
 class HomeServiceHeaderViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = HomeServiceHeader.objects.all().order_by('-id')
+    queryset = HomeServiceHeader.objects.all()
     serializer_class = HomeServiceHeaderSerializer
 
 class ServiceViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = Service.objects.all().order_by('-id')
+    queryset = Service.objects.all()
     serializer_class = ServiceSerializer
 
 class HomeConsultantHeaderViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = HomeConsultantHeader.objects.all().order_by('-id')
+    queryset = HomeConsultantHeader.objects.all()
     serializer_class = HomeConsultantHeaderSerializer
 
 class ConsultantViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = Consultant.objects.all().order_by('-id')
+    queryset = Consultant.objects.all()
     serializer_class = ConsultantSerializer
 
 class BlogViewSet(viewsets.ModelViewSet):
@@ -97,127 +97,127 @@ class BlogViewSet(viewsets.ModelViewSet):
 
 class HomeSpecialitiesHeaderViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = HomeSpecialitiesHeader.objects.all().order_by('-id')
+    queryset = HomeSpecialitiesHeader.objects.all()
     serializer_class = HomeSpecialitiesHeaderSerializer
 
 class SpecialitiesViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = Speciality.objects.all().order_by('-id')
+    queryset = Speciality.objects.all()
     serializer_class = SpecialitySerializer
 
 class EquipmentViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = Equipment.objects.all().order_by('-id')
+    queryset = Equipment.objects.all()
     serializer_class = EquipmentSerializer
 
 class TestimonialViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = Testimonial.objects.all().order_by('-id')
+    queryset = Testimonial.objects.all()
     serializer_class = TestimonialSerializer
 
 class SpecialitiesHeroViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = SpecialitiesHero.objects.all().order_by('-id')
+    queryset = SpecialitiesHero.objects.all()
     serializer_class = SpecialitiesHeroSerializer
 
 class SpecialitiesMainHeaderViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = SpecialitiesMainHeader.objects.all().order_by('-id')
+    queryset = SpecialitiesMainHeader.objects.all()
     serializer_class = SpecialitiesMainHeaderSerializer
 
 class ConsultantsMainHeaderViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = ConsultantsMainHeader.objects.all().order_by('-id')
+    queryset = ConsultantsMainHeader.objects.all()
     serializer_class = ConsultantsMainHeaderSerializer
 
 class ContactHeroViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = ContactHero.objects.all().order_by('-id')
+    queryset = ContactHero.objects.all()
     serializer_class = ContactHeroSerializer
 
 class QuickInfoViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = QuickInfo.objects.all().order_by('-id')
+    queryset = QuickInfo.objects.all()
     serializer_class = QuickInfoSerializer
 
 class MissionViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = Mission.objects.all().order_by('-id')
+    queryset = Mission.objects.all()
     serializer_class = MissionSerializer
 
 class VisionViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = Vision.objects.all().order_by('-id')
+    queryset = Vision.objects.all()
     serializer_class = VisionSerializer
 
 class OurValuesViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = OurValues.objects.all().order_by('-id')
+    queryset = OurValues.objects.all()
     serializer_class = OurValuesSerializer
 
 class CTASectionViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = CTASection.objects.all().order_by('-id')
+    queryset = CTASection.objects.all()
     serializer_class = CTASectionSerializer
     
 class AboutHeroViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = AboutHero.objects.all().order_by('-id')
+    queryset = AboutHero.objects.all()
     serializer_class = AboutHeroSerializer
 
 class AboutStatsViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = AboutStats.objects.all().order_by('-id')
+    queryset = AboutStats.objects.all()
     serializer_class = AboutStatsSerializer
 
 class AboutCoreValuesViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = AboutCoreValues.objects.all().order_by('-id')
+    queryset = AboutCoreValues.objects.all()
     serializer_class = AboutCoreValuesSerializer
 
 class AboutFeaturesViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = AboutFeatures.objects.all().order_by('-id')
+    queryset = AboutFeatures.objects.all()
     serializer_class = AboutFeaturesSerializer
 
 class AboutAchievementsViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = AboutAchievements.objects.all().order_by('-id')
+    queryset = AboutAchievements.objects.all()
     serializer_class = AboutAchievementsSerializer
 
 class AboutContactDetailsViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = AboutContactDetails.objects.all().order_by('-id')
+    queryset = AboutContactDetails.objects.all()
     serializer_class = AboutContactDetailsSerializer
 
 # Read-Only ViewSets (viewsets.read-only access)
 
 class DescCarousalReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = DescCarousal.objects.all().order_by('-id')
+    queryset = DescCarousal.objects.all()
     serializer_class = DescCarousalSerializer
     
 class MobCarousalReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = MobCarousal.objects.all().order_by('-id')
+    queryset = MobCarousal.objects.all()
     serializer_class = MobCarousalSerializer
 
 class HomeConsultantHeaderReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = HomeConsultantHeader.objects.all().order_by('-id')
+    queryset = HomeConsultantHeader.objects.all()
     serializer_class = HomeConsultantHeaderSerializer
 
 class HomeAboutHeroReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = HomeAboutHero.objects.all().order_by('-id')
+    queryset = HomeAboutHero.objects.all()
     serializer_class = HomeAboutHeroSerializer
 
 class HomeServiceHeaderReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = HomeServiceHeader.objects.all().order_by('-id')
+    queryset = HomeServiceHeader.objects.all()
     serializer_class = HomeServiceHeaderSerializer
 
 class ServiceReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Service.objects.all().order_by('-id')
+    queryset = Service.objects.all()
     serializer_class = ServiceSerializer
 
 class ConsultantReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Consultant.objects.all().order_by('-id')
+    queryset = Consultant.objects.all()
     serializer_class = ConsultantSerializer
 
 class BlogReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
@@ -225,77 +225,77 @@ class BlogReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = BlogReadonlySerializer
 
 class EquipmentReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Equipment.objects.all().order_by('-id')
+    queryset = Equipment.objects.all()
     serializer_class = EquipmentReadonlySerializer
 
 class HomeSpecialitiesHeaderReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = HomeSpecialitiesHeader.objects.all().order_by('-id')
+    queryset = HomeSpecialitiesHeader.objects.all()
     serializer_class = HomeSpecialitiesHeaderSerializer
 
 class TestimonialReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Testimonial.objects.all().order_by('-id')
+    queryset = Testimonial.objects.all()
     serializer_class = TestimonialSerializer
 
 class SpecialitiesMainHeaderReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = SpecialitiesMainHeader.objects.all().order_by('-id')
+    queryset = SpecialitiesMainHeader.objects.all()
     serializer_class = SpecialitiesMainHeaderSerializer
 
 class SpecialitiesHeroReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = SpecialitiesHero.objects.all().order_by('-id')
+    queryset = SpecialitiesHero.objects.all()
     serializer_class = SpecialitiesHeroSerializer
 
 class ConsultantsMainHeaderReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = ConsultantsMainHeader.objects.all().order_by('-id')
+    queryset = ConsultantsMainHeader.objects.all()
     serializer_class = ConsultantsMainHeaderSerializer
 
 class SpecialitiesReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Speciality.objects.all().order_by('-id')
+    queryset = Speciality.objects.all()
     serializer_class = SpecialitySerializer
 
 class ContactHeroReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = ContactHero.objects.all().order_by('-id')
+    queryset = ContactHero.objects.all()
     serializer_class = ContactHeroSerializer
 
 class QuickInfoReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = QuickInfo.objects.all().order_by('-id')
+    queryset = QuickInfo.objects.all()
     serializer_class = QuickInfoSerializer
 
 class MissionReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Mission.objects.all().order_by('-id')
+    queryset = Mission.objects.all()
     serializer_class = MissionSerializer
 
 class VisionReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Vision.objects.all().order_by('-id')
+    queryset = Vision.objects.all()
     serializer_class = VisionSerializer
 
 class OurValuesReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = OurValues.objects.all().order_by('-id')
+    queryset = OurValues.objects.all()
     serializer_class = OurValuesSerializer
 
 class CTASectionReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = CTASection.objects.all().order_by('-id')
+    queryset = CTASection.objects.all()
     serializer_class = CTASectionSerializer
     
 class AboutHeroReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = AboutHero.objects.all().order_by('-id')
+    queryset = AboutHero.objects.all()
     serializer_class = AboutHeroSerializer
 
 class AboutStatsReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = AboutStats.objects.all().order_by('-id')
+    queryset = AboutStats.objects.all()
     serializer_class = AboutStatsSerializer
 
 class AboutCoreValuesReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = AboutCoreValues.objects.all().order_by('-id')
+    queryset = AboutCoreValues.objects.all()
     serializer_class = AboutCoreValuesSerializer
 
 class AboutFeaturesReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = AboutFeatures.objects.all().order_by('-id')
+    queryset = AboutFeatures.objects.all()
     serializer_class = AboutFeaturesSerializer
 
 class AboutAchievementsReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = AboutAchievements.objects.all().order_by('-id')
+    queryset = AboutAchievements.objects.all()
     serializer_class = AboutAchievementsSerializer
 
 class AboutContactDetailsReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = AboutContactDetails.objects.all().order_by('-id')
+    queryset = AboutContactDetails.objects.all()
     serializer_class = AboutContactDetailsSerializer
