@@ -30,7 +30,7 @@ from .views import (
     OurValuesViewSet,
     CTASectionViewSet,
     AppointmentReadOnlyViewSet,
-    AppointmentViewSet
+    AppointmentCreateView,
 )
 
 router = DefaultRouter()
@@ -65,7 +65,6 @@ router.register(r'mission', MissionViewSet, basename='mission')
 router.register(r'vision', VisionViewSet, basename='vision')
 router.register(r'our-values', OurValuesViewSet, basename='our-values')
 router.register(r'cta-section', CTASectionViewSet, basename='cta-section')
-router.register(r'appointments', AppointmentViewSet, basename='appointments')
 
 
 # Register read-only viewsets
@@ -106,4 +105,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
+    
+    path('appointment-create/', AppointmentCreateView.as_view(), name='appointment-create'),
 ]

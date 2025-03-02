@@ -29,6 +29,7 @@ from .serializers import (
     AboutFeaturesSerializer, AboutAchievementsSerializer, AboutContactDetailsSerializer,
     DescCarousalSerializer, MobCarousalSerializer, AppointmentSerializer
 )
+from rest_framework import generics
 
 # Login and Logout Views
 
@@ -190,10 +191,6 @@ class AboutContactDetailsViewSet(viewsets.ModelViewSet):
     queryset = AboutContactDetails.objects.all()
     serializer_class = AboutContactDetailsSerializer
     
-class AppointmentViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
-    queryset = Appointment.objects.all()
-    serializer_class = AppointmentSerializer
 
 # Read-Only ViewSets (viewsets.read-only access)
 
@@ -306,5 +303,14 @@ class AboutContactDetailsReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = AboutContactDetailsSerializer
 
 class AppointmentReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = Appointment.objects.all()
+    serializer_class = AppointmentSerializer
+    
+# Create
+class AppointmentCreateView(generics.CreateAPIView):
+    """
+    A view that only allows POST requests to create an appointment.
+    """
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
