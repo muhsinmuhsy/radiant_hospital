@@ -394,3 +394,13 @@ class AboutContactDetails(models.Model):
     
     def __str__(self):
         return self.id or 'No Id'
+    
+class Appointment(models.Model):
+    full_name = models.CharField(max_length=225, null=True, blank=True)
+    email = models.EmailField(max_length=225, null=True, blank=True)
+    phone = models.CharField(max_length=225, null=True, blank=True)
+    age = models.CharField(max_length=225, null=True, blank=True)
+    address = models.TextField(null=True, blank=True)
+    doctors = models.ForeignKey(Consultant, on_delete=models.SET_NULL, null=True, blank=True)
+    preferred_date = models.CharField(max_length=225, null=True, blank=True)
+    preferred_time = models.CharField(max_length=225, null=True, blank=True)

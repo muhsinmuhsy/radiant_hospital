@@ -4,7 +4,8 @@ from .models import (
     HomeConsultantHeader, Equipment, EquipmentSpec, Testimonial, SpecialitiesHero, SpecialitiesMainHeader,
     ConsultantsMainHeader, ContactHero, QuickInfo, Mission, Vision, OurValues, CTASection,
     AboutHero, AboutStats, AboutCoreValues, 
-    AboutFeatures, AboutAchievements, AboutContactDetails, DescCarousal, MobCarousal
+    AboutFeatures, AboutAchievements, AboutContactDetails, DescCarousal, MobCarousal,
+    Appointment
 )
 from django.utils.timesince import timesince
 
@@ -239,3 +240,18 @@ class AboutContactDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = AboutContactDetails
         fields = ['id', 'phone', 'mail', 'location', 'time']
+
+class AppointmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Appointment
+        fields = [
+            "id",
+            "full_name",
+            "email",
+            "phone",
+            "age",
+            "address",
+            "doctors",
+            "preferred_date",
+            "preferred_time",
+        ]

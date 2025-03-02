@@ -10,7 +10,8 @@ from .models import ( User,
     ConsultantsMainHeader, HomeConsultantHeader, Equipment,
     ContactHero, QuickInfo, Mission, Vision, OurValues, CTASection,
     AboutHero, AboutStats, AboutCoreValues, 
-    AboutFeatures, AboutAchievements, AboutContactDetails, DescCarousal, MobCarousal
+    AboutFeatures, AboutAchievements, AboutContactDetails, DescCarousal, MobCarousal,
+    Appointment
 )
 from .serializers import (
     ServiceSerializer, BlogSerializer, ConsultantSerializer, HomeAboutHeroSerializer, 
@@ -26,7 +27,7 @@ from .serializers import (
     CTASectionSerializer,
     AboutHeroSerializer, AboutStatsSerializer, AboutCoreValuesSerializer,
     AboutFeaturesSerializer, AboutAchievementsSerializer, AboutContactDetailsSerializer,
-    DescCarousalSerializer, MobCarousalSerializer
+    DescCarousalSerializer, MobCarousalSerializer, AppointmentSerializer
 )
 
 # Login and Logout Views
@@ -188,6 +189,11 @@ class AboutContactDetailsViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     queryset = AboutContactDetails.objects.all()
     serializer_class = AboutContactDetailsSerializer
+    
+class AppointmentViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = Appointment.objects.all()
+    serializer_class = AppointmentSerializer
 
 # Read-Only ViewSets (viewsets.read-only access)
 
@@ -298,3 +304,7 @@ class AboutAchievementsReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
 class AboutContactDetailsReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = AboutContactDetails.objects.all()
     serializer_class = AboutContactDetailsSerializer
+
+class AppointmentReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Appointment.objects.all()
+    serializer_class = AppointmentSerializer

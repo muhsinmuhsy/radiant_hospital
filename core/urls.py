@@ -28,7 +28,9 @@ from .views import (
     MissionViewSet,
     VisionViewSet,
     OurValuesViewSet,
-    CTASectionViewSet
+    CTASectionViewSet,
+    AppointmentReadOnlyViewSet,
+    AppointmentViewSet
 )
 
 router = DefaultRouter()
@@ -63,6 +65,7 @@ router.register(r'mission', MissionViewSet, basename='mission')
 router.register(r'vision', VisionViewSet, basename='vision')
 router.register(r'our-values', OurValuesViewSet, basename='our-values')
 router.register(r'cta-section', CTASectionViewSet, basename='cta-section')
+router.register(r'appointments', AppointmentViewSet, basename='appointments')
 
 
 # Register read-only viewsets
@@ -95,6 +98,8 @@ router.register(r'readonly-about-core-values', AboutCoreValuesReadOnlyViewSet, b
 router.register(r'readonly-about-features', AboutFeaturesReadOnlyViewSet, basename='readonly-about-features')
 router.register(r'readonly-about-achievements', AboutAchievementsReadOnlyViewSet, basename='readonly-about-achievements')
 router.register(r'readonly-about-contact-details', AboutContactDetailsReadOnlyViewSet, basename='readonly-about-contact-details')
+
+router.register(r'readonly-appointments', AppointmentReadOnlyViewSet, basename='readonly-appointment')
 
 
 urlpatterns = [
