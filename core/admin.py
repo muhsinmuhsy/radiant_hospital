@@ -8,7 +8,8 @@ from .models import (
     AboutFeatures,
     AboutAchievements,
     AboutContactDetails,
-    DescCarousal, MobCarousal
+    DescCarousal, MobCarousal,
+    Appointment
 )
 from django.contrib.auth.models import Group
 from rest_framework.authtoken.models import TokenProxy 
@@ -226,4 +227,7 @@ class AboutContactDetailsAdmin(admin.ModelAdmin):
     list_filter = ['created_at', 'updated_at']
     ordering = ['-created_at']
 
-    
+@admin.register(Appointment)
+class AppointmentAdmin(admin.ModelAdmin):
+    list_display = ['full_name', 'email', 'phone', 'preferred_date', 'preferred_time', 'created_at', 'updated_at']
+    ordering = ['-id']

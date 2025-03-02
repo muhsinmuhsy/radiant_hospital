@@ -404,3 +404,6 @@ class Appointment(models.Model):
     doctors = models.ForeignKey(Consultant, on_delete=models.SET_NULL, null=True, blank=True)
     preferred_date = models.CharField(max_length=225, null=True, blank=True)
     preferred_time = models.CharField(max_length=225, null=True, blank=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
