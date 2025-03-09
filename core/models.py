@@ -75,7 +75,45 @@ class Consultant(models.Model):
     image = models.ImageField(upload_to='consultants/', null=True, blank=True)
     name = models.CharField(max_length=255, null=True, blank=True)
     specialty = models.CharField(max_length=255, null=True, blank=True)
-    
+    qualification = models.TextField(null=True, blank=True)
+    experience = models.CharField(max_length=50, null=True, blank=True)
+    contact = models.CharField(max_length=20, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
+    location = models.TextField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    specialized_departments = models.JSONField(default=list, null=True, blank=True)
+    # specializedDepartments: [
+    #     "Pediatric ENT",
+    #     "Sinus Surgery",
+    #     "Hearing Restoration",
+    #     "Voice and Swallowing Disorders",
+    #     "Allergy Treatment"
+    # ]
+    available_days = models.JSONField(default=list, null=True, blank=True) 
+    # [
+    #     {
+    #         "day": "Monday",
+    #         "timeSlots": [
+    #         { "time": "9:00 AM - 12:00 PM", "type": "Consultation" },
+    #         { "time": "2:00 PM - 5:00 PM", "type": "Surgical Procedures" }
+    #         ]
+    #     },
+    #     {
+    #         "day": "Wednesday",
+    #         "timeSlots": [
+    #         { "time": "10:00 AM - 1:00 PM", "type": "Hearing Tests" },
+    #         { "time": "4:00 PM - 7:00 PM", "type": "Evening Consultation" }
+    #         ]
+    #     },
+    #     {
+    #         "day": "Friday",
+    #         "timeSlots": [
+    #         { "time": "8:00 AM - 11:00 AM", "type": "Sinus Evaluation" },
+    #         { "time": "3:00 PM - 6:00 PM", "type": "Allergy Consultation" }
+    #         ]
+    #     }
+    # ]
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
@@ -134,7 +172,12 @@ class HomeSpecialitiesHeader(models.Model):
 
     
 class Speciality(models.Model):
+    CATEGORY_CHOICE  = (
+        ("Surgical Procedures", "Surgical Procedures"),
+        ("Endoscopic Procedures", "Endoscopic Procedures"),
+    )
     src = models.FileField(upload_to='speciality/', null=True, blank=True)
+    category = models.CharField(max_length=255, null=True, blank=True, choices=CATEGORY_CHOICE)
     title = models.CharField(max_length=255, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     about = models.TextField(null=True, blank=True)
@@ -301,38 +344,12 @@ class Vision(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
-        verbose_name = "Mission"
-        verbose_name_plural = "Missions"
+        verbose_name = "Vission"
+        verbose_name_plural = "Vissions"
 
     def __str__(self):
         return self.title or 'No Title'
     
-class OurValues(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField(null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    
-    class Meta:
-        verbose_name = "OurValue"
-        verbose_name_plural = "OurValues"
-
-    def __str__(self):
-        return self.title or 'No Title'
-
-class CTASection(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField(null=True, blank=True)
-    
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    
-    class Meta:
-        verbose_name = "CTASection"
-        verbose_name_plural = "CTASections"
-
-    def __str__(self):
-        return self.title or 'No Title'
     
 class AboutHero(models.Model):
     title = models.CharField(max_length=255)
@@ -407,3 +424,26 @@ class Appointment(models.Model):
     
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+    
+class GetInTouch(models.Model):
+    location = models.CharField(max_length=255, help_text="Physical address of the company")
+    phone = models.CharField(max_length=20, help_text="Contact phone number")
+    email = models.EmailField(help_text="Contact email address")
+    working_hours = models.CharField(max_length=255, help_text="Company working hours")
+
+    def __str__(self):
+        return self.location
+    
+class ServiceHero(models.Model):
+    title = models.CharField(max_length=255, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = "Service Hero"
+        verbose_name_plural = "Service Heros"
+
+    def __str__(self):
+        return self.title or 'No Title'

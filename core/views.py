@@ -8,10 +8,10 @@ from .models import ( User,
     Service, Blog, Consultant, HomeAboutHero, HomeServiceHeader, Speciality, 
     HomeSpecialitiesHeader, Testimonial, SpecialitiesHero, SpecialitiesMainHeader, 
     ConsultantsMainHeader, HomeConsultantHeader, Equipment,
-    ContactHero, QuickInfo, Mission, Vision, OurValues, CTASection,
+    ContactHero, QuickInfo, Mission, Vision,
     AboutHero, AboutStats, AboutCoreValues, 
     AboutFeatures, AboutAchievements, AboutContactDetails, DescCarousal, MobCarousal,
-    Appointment
+    Appointment, GetInTouch, ServiceHero
 )
 from .serializers import (
     ServiceSerializer, BlogSerializer, ConsultantSerializer, HomeAboutHeroSerializer, 
@@ -23,13 +23,13 @@ from .serializers import (
     QuickInfoSerializer,
     MissionSerializer,
     VisionSerializer,
-    OurValuesSerializer,
-    CTASectionSerializer,
     AboutHeroSerializer, AboutStatsSerializer, AboutCoreValuesSerializer,
     AboutFeaturesSerializer, AboutAchievementsSerializer, AboutContactDetailsSerializer,
-    DescCarousalSerializer, MobCarousalSerializer, AppointmentSerializer
+    DescCarousalSerializer, MobCarousalSerializer, AppointmentSerializer, GetInTouchSerializer,
+    ServiceHeroSerializer, InquirySerializer
 )
 from rest_framework import generics
+from django.core.mail import send_mail
 
 # Login and Logout Views
 
@@ -151,15 +151,6 @@ class VisionViewSet(viewsets.ModelViewSet):
     queryset = Vision.objects.all()
     serializer_class = VisionSerializer
 
-class OurValuesViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
-    queryset = OurValues.objects.all()
-    serializer_class = OurValuesSerializer
-
-class CTASectionViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
-    queryset = CTASection.objects.all()
-    serializer_class = CTASectionSerializer
     
 class AboutHeroViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
@@ -190,6 +181,16 @@ class AboutContactDetailsViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     queryset = AboutContactDetails.objects.all()
     serializer_class = AboutContactDetailsSerializer
+    
+class GetInTouchViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = GetInTouch.objects.all()
+    serializer_class = GetInTouchSerializer
+    
+class ServiceHeroViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = ServiceHero.objects.all()
+    serializer_class = ServiceHeroSerializer
     
 
 # Read-Only ViewSets (viewsets.read-only access)
@@ -270,14 +271,6 @@ class VisionReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Vision.objects.all()
     serializer_class = VisionSerializer
 
-class OurValuesReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = OurValues.objects.all()
-    serializer_class = OurValuesSerializer
-
-class CTASectionReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = CTASection.objects.all()
-    serializer_class = CTASectionSerializer
-    
 class AboutHeroReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = AboutHero.objects.all()
     serializer_class = AboutHeroSerializer
@@ -307,6 +300,14 @@ class AppointmentReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
     
+class GetInTouchReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = GetInTouch.objects.all()
+    serializer_class = GetInTouchSerializer
+    
+class ServiceHeroReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = ServiceHero.objects.all()
+    serializer_class = ServiceHeroSerializer
+    
 # Create
 class AppointmentCreateView(generics.CreateAPIView):
     """
@@ -314,3 +315,25 @@ class AppointmentCreateView(generics.CreateAPIView):
     """
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
+    
+class InquiryView(APIView):
+    def post(self, request):
+        serializer = InquirySerializer(data=request.data)
+        if serializer.is_valid():
+            full_name = serializer.validated_data["full_name"]
+            email = serializer.validated_data["email"]
+            phone = serializer.validated_data["phone"]
+            message = serializer.validated_data["message"]
+
+            # Send email
+            send_mail(
+                subject="New Medical Inquiry",
+                message=f"Full Name: {full_name}\nEmail: {email}\nPhone: {phone}\nMessage: {message}",
+                from_email="your-email@example.com",  
+                recipient_list=["info@radiantent.com"],
+                fail_silently=False,
+            )
+
+            return Response({"message": "Inquiry submitted successfully"}, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

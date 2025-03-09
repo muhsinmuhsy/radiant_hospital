@@ -2,14 +2,15 @@ from django.contrib import admin
 from .models import (
     Service, Blog, Consultant, HomeConsultantHeader, HomeAboutHero, HomeServiceHeader, Speciality, HomeSpecialitiesHeader, Equipment, EquipmentSpec,
     Testimonial, SpecialitiesHero, SpecialitiesMainHeader, ConsultantsMainHeader,
-    ContactHero, QuickInfo, Mission, Vision, OurValues, CTASection,
+    ContactHero, QuickInfo, Mission, Vision,
     AboutStats,
     AboutCoreValues,
     AboutFeatures,
     AboutAchievements,
     AboutContactDetails,
     DescCarousal, MobCarousal,
-    Appointment
+    Appointment, AboutHero,
+    GetInTouch, ServiceHero
 )
 from django.contrib.auth.models import Group
 from rest_framework.authtoken.models import TokenProxy 
@@ -177,16 +178,6 @@ class VisionAdmin(admin.ModelAdmin):
     list_display = ['title', 'created_at', 'updated_at']
     search_fields = ['title']
 
-@admin.register(OurValues)
-class OurValuesAdmin(admin.ModelAdmin):
-    list_display = ['title', 'created_at', 'updated_at']
-    search_fields = ['title']
-
-@admin.register(CTASection)
-class CTASectionAdmin(admin.ModelAdmin):
-    list_display = ['title', 'created_at', 'updated_at']
-    search_fields = ['title']
-
 # Admin for AboutStats
 @admin.register(AboutStats)
 class AboutStatsAdmin(admin.ModelAdmin):
@@ -231,3 +222,7 @@ class AboutContactDetailsAdmin(admin.ModelAdmin):
 class AppointmentAdmin(admin.ModelAdmin):
     list_display = ['full_name', 'email', 'phone', 'preferred_date', 'preferred_time', 'created_at', 'updated_at']
     ordering = ['-id']
+    
+admin.site.register(AboutHero)
+admin.site.register(GetInTouch)
+admin.site.register(ServiceHero)

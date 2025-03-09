@@ -2,10 +2,10 @@ from rest_framework import serializers
 from .models import (
     Service, Blog, Consultant, HomeAboutHero, HomeServiceHeader, Speciality, HomeSpecialitiesHeader,
     HomeConsultantHeader, Equipment, EquipmentSpec, Testimonial, SpecialitiesHero, SpecialitiesMainHeader,
-    ConsultantsMainHeader, ContactHero, QuickInfo, Mission, Vision, OurValues, CTASection,
+    ConsultantsMainHeader, ContactHero, QuickInfo, Mission, Vision,
     AboutHero, AboutStats, AboutCoreValues, 
     AboutFeatures, AboutAchievements, AboutContactDetails, DescCarousal, MobCarousal,
-    Appointment
+    Appointment, GetInTouch, ServiceHero
 )
 from django.utils.timesince import timesince
 
@@ -54,7 +54,7 @@ class BlogSerializer(serializers.ModelSerializer):
 class ConsultantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Consultant
-        fields = ['id', 'image', 'name', 'specialty']
+        fields = '__all__'
         
 class HomeSpecialitiesHeaderSerializer(serializers.ModelSerializer):
     class Meta:
@@ -64,7 +64,7 @@ class HomeSpecialitiesHeaderSerializer(serializers.ModelSerializer):
 class SpecialitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Speciality
-        fields = ['id', 'src', 'title', 'description', 'about', 'stat', 'benefits']
+        fields = ['id', 'src', 'category', 'title', 'description', 'about', 'stat', 'benefits']
         
 class EquipmentSpecSerializer(serializers.ModelSerializer):
     class Meta:
@@ -187,24 +187,6 @@ class VisionSerializer(serializers.ModelSerializer):
             'title',
             'description',
         ]
-
-class OurValuesSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = OurValues
-        fields = [
-            'id',
-            'title',
-            'description',
-        ]
-
-class CTASectionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CTASection
-        fields = [
-            'id',
-            'title',
-            'description',
-        ]
         
 class AboutHeroSerializer(serializers.ModelSerializer):
     class Meta:
@@ -255,3 +237,21 @@ class AppointmentSerializer(serializers.ModelSerializer):
             "preferred_date",
             "preferred_time",
         ]
+        
+
+class GetInTouchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GetInTouch
+        fields = '__all__'
+        
+
+class ServiceHeroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ServiceHero
+        fields = ['id', 'title', 'description']
+        
+class InquirySerializer(serializers.Serializer):
+    full_name = serializers.CharField(max_length=255)
+    email = serializers.EmailField()
+    phone = serializers.CharField(max_length=20)
+    message = serializers.CharField()
