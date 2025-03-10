@@ -9,9 +9,8 @@ from .models import ( User,
     HomeSpecialitiesHeader, Testimonial, SpecialitiesHero, SpecialitiesMainHeader, 
     ConsultantsMainHeader, HomeConsultantHeader, Equipment,
     ContactHero, QuickInfo, Mission, Vision,
-    AboutHero, AboutStats, AboutCoreValues, 
-    AboutFeatures, AboutAchievements, AboutContactDetails, DescCarousal, MobCarousal,
-    Appointment, GetInTouch, ServiceHero
+    AboutHero, DescCarousal, MobCarousal,
+    Appointment, GetInTouch, ServiceHero, CTAButton, Inquiry
 )
 from .serializers import (
     ServiceSerializer, BlogSerializer, ConsultantSerializer, HomeAboutHeroSerializer, 
@@ -23,13 +22,14 @@ from .serializers import (
     QuickInfoSerializer,
     MissionSerializer,
     VisionSerializer,
-    AboutHeroSerializer, AboutStatsSerializer, AboutCoreValuesSerializer,
-    AboutFeaturesSerializer, AboutAchievementsSerializer, AboutContactDetailsSerializer,
+    AboutHeroSerializer,
     DescCarousalSerializer, MobCarousalSerializer, AppointmentSerializer, GetInTouchSerializer,
-    ServiceHeroSerializer, InquirySerializer
+    ServiceHeroSerializer, InquirySerializer, CTAButtonSerializer
 )
 from rest_framework import generics
 from django.core.mail import send_mail
+from django.conf import settings
+from django.utils import timezone
 
 # Login and Logout Views
 
@@ -157,30 +157,6 @@ class AboutHeroViewSet(viewsets.ModelViewSet):
     queryset = AboutHero.objects.all()
     serializer_class = AboutHeroSerializer
 
-class AboutStatsViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
-    queryset = AboutStats.objects.all()
-    serializer_class = AboutStatsSerializer
-
-class AboutCoreValuesViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
-    queryset = AboutCoreValues.objects.all()
-    serializer_class = AboutCoreValuesSerializer
-
-class AboutFeaturesViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
-    queryset = AboutFeatures.objects.all()
-    serializer_class = AboutFeaturesSerializer
-
-class AboutAchievementsViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
-    queryset = AboutAchievements.objects.all()
-    serializer_class = AboutAchievementsSerializer
-
-class AboutContactDetailsViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
-    queryset = AboutContactDetails.objects.all()
-    serializer_class = AboutContactDetailsSerializer
     
 class GetInTouchViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
@@ -191,6 +167,11 @@ class ServiceHeroViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     queryset = ServiceHero.objects.all()
     serializer_class = ServiceHeroSerializer
+    
+class CTAButtonViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = CTAButton.objects.all()
+    serializer_class = CTAButtonSerializer
     
 
 # Read-Only ViewSets (viewsets.read-only access)
@@ -275,25 +256,6 @@ class AboutHeroReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = AboutHero.objects.all()
     serializer_class = AboutHeroSerializer
 
-class AboutStatsReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = AboutStats.objects.all()
-    serializer_class = AboutStatsSerializer
-
-class AboutCoreValuesReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = AboutCoreValues.objects.all()
-    serializer_class = AboutCoreValuesSerializer
-
-class AboutFeaturesReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = AboutFeatures.objects.all()
-    serializer_class = AboutFeaturesSerializer
-
-class AboutAchievementsReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = AboutAchievements.objects.all()
-    serializer_class = AboutAchievementsSerializer
-
-class AboutContactDetailsReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = AboutContactDetails.objects.all()
-    serializer_class = AboutContactDetailsSerializer
 
 class AppointmentReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [IsAuthenticated]
@@ -308,6 +270,10 @@ class ServiceHeroReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = ServiceHero.objects.all()
     serializer_class = ServiceHeroSerializer
     
+class CTAButtonReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = CTAButton.objects.all()
+    serializer_class = CTAButtonSerializer
+    
 # Create
 class AppointmentCreateView(generics.CreateAPIView):
     """
@@ -320,20 +286,36 @@ class InquiryView(APIView):
     def post(self, request):
         serializer = InquirySerializer(data=request.data)
         if serializer.is_valid():
-            full_name = serializer.validated_data["full_name"]
-            email = serializer.validated_data["email"]
-            phone = serializer.validated_data["phone"]
-            message = serializer.validated_data["message"]
+            inquiry = serializer.save()
 
             # Send email
             send_mail(
                 subject="New Medical Inquiry",
-                message=f"Full Name: {full_name}\nEmail: {email}\nPhone: {phone}\nMessage: {message}",
-                from_email="your-email@example.com",  
+                message=f"Full Name: {inquiry.full_name}\n"
+                        f"Email: {inquiry.email}\n"
+                        f"Phone: {inquiry.phone}\n"
+                        f"Message: {inquiry.message}",
+                from_email=settings.DEFAULT_FROM_EMAIL,  
                 recipient_list=["info@radiantent.com"],
                 fail_silently=False,
             )
 
-            return Response({"message": "Inquiry submitted successfully"}, status=status.HTTP_200_OK)
+            return Response({"message": "Inquiry submitted successfully"}, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    
+class Counts(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request):
+        appoiments = Appointment.objects.count()
+        today_appoiments = Appointment.objects.filter(created_at__date=timezone.now().date()).count()
+        inquires = Inquiry.objects.count()
+        doctors = Consultant.objects.count()
+
+        return Response({
+            "total_appointments": appoiments,
+            "today_appointments": today_appoiments,
+            "total_inquiries": inquires,
+            "total_doctors": doctors
+        }, status=status.HTTP_200_OK)

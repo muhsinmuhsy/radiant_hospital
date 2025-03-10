@@ -11,10 +11,8 @@ from .views import (
     SpecialitiesMainHeaderReadOnlyViewSet, SpecialitiesHeroReadOnlyViewSet, ConsultantsMainHeaderReadOnlyViewSet,
     ContactHeroReadOnlyViewSet, QuickInfoReadOnlyViewSet, MissionReadOnlyViewSet,
     VisionReadOnlyViewSet,
-    AboutHeroViewSet, AboutStatsViewSet, AboutCoreValuesViewSet,
-    AboutFeaturesViewSet, AboutAchievementsViewSet, AboutContactDetailsViewSet,
-    AboutHeroReadOnlyViewSet, AboutStatsReadOnlyViewSet, AboutCoreValuesReadOnlyViewSet,
-    AboutFeaturesReadOnlyViewSet, AboutAchievementsReadOnlyViewSet, AboutContactDetailsReadOnlyViewSet,
+    AboutHeroViewSet,
+    AboutHeroReadOnlyViewSet, 
     DescCarousalViewSet,
     MobCarousallViewSet,
     HomeConsultantHeaderViewSet,
@@ -33,7 +31,10 @@ from .views import (
     GetInTouchReadOnlyViewSet,
     ServiceHeroViewSet,
     ServiceHeroReadOnlyViewSet,
-    InquiryView
+    InquiryView,
+    CTAButtonViewSet,
+    CTAButtonReadOnlyViewSet,
+    Counts
 )
 
 router = DefaultRouter()
@@ -48,11 +49,6 @@ router.register(r'home-service-header', HomeServiceHeaderViewSet, basename='serv
 router.register(r'equipments', EquipmentViewSet, basename='equipment')
 
 router.register(r'about-hero', AboutHeroViewSet, basename='about-hero')
-router.register(r'about-stats', AboutStatsViewSet, basename='about-stats')
-router.register(r'about-core-values', AboutCoreValuesViewSet, basename='about-core-values')
-router.register(r'about-features', AboutFeaturesViewSet, basename='about-features')
-router.register(r'about-achievements', AboutAchievementsViewSet, basename='about-achievements')
-router.register(r'about-contact-details', AboutContactDetailsViewSet, basename='about-contact-details')
 
 router.register(r'desc-carousal', DescCarousalViewSet, basename='desc-carousal')
 router.register(r'mob-carousal', MobCarousallViewSet, basename='mob-carousal')
@@ -68,6 +64,7 @@ router.register(r'mission', MissionViewSet, basename='mission')
 router.register(r'vision', VisionViewSet, basename='vision')
 router.register(r'get-in-touch', GetInTouchViewSet, basename='get-in-touch')
 router.register(r'service-hero', ServiceHeroViewSet, basename='service-hero')
+router.register(r'cta-button', CTAButtonViewSet, basename='cta-button')
 
 
 # Register read-only viewsets
@@ -93,15 +90,11 @@ router.register(r'readonly-mission', MissionReadOnlyViewSet, basename='readonly-
 router.register(r'readonly-vision', VisionReadOnlyViewSet, basename='readonly-vision')
 
 router.register(r'readonly-about-hero', AboutHeroReadOnlyViewSet, basename='readonly-about-hero')
-router.register(r'readonly-about-stats', AboutStatsReadOnlyViewSet, basename='readonly-about-stats')
-router.register(r'readonly-about-core-values', AboutCoreValuesReadOnlyViewSet, basename='readonly-about-core-values')
-router.register(r'readonly-about-features', AboutFeaturesReadOnlyViewSet, basename='readonly-about-features')
-router.register(r'readonly-about-achievements', AboutAchievementsReadOnlyViewSet, basename='readonly-about-achievements')
-router.register(r'readonly-about-contact-details', AboutContactDetailsReadOnlyViewSet, basename='readonly-about-contact-details')
 
 router.register(r'readonly-appointments', AppointmentReadOnlyViewSet, basename='readonly-appointments')
 router.register(r'readonly-get-in-touch', GetInTouchReadOnlyViewSet, basename='readonly-get-in-touch')
 router.register(r'readonly-service-hero', ServiceHeroReadOnlyViewSet, basename='readonly-service-hero')
+router.register(r'readonly-cta-button', CTAButtonReadOnlyViewSet, basename='readonly-cta-button')
 
 
 urlpatterns = [
@@ -111,4 +104,6 @@ urlpatterns = [
     
     path('appointment-create/', AppointmentCreateView.as_view(), name='appointment-create'),
     path("api/inquiry/", InquiryView.as_view(), name="inquiry_api"),
+    
+    path('counts/', Counts.as_view(), name='counts'),
 ]

@@ -3,9 +3,8 @@ from .models import (
     Service, Blog, Consultant, HomeAboutHero, HomeServiceHeader, Speciality, HomeSpecialitiesHeader,
     HomeConsultantHeader, Equipment, EquipmentSpec, Testimonial, SpecialitiesHero, SpecialitiesMainHeader,
     ConsultantsMainHeader, ContactHero, QuickInfo, Mission, Vision,
-    AboutHero, AboutStats, AboutCoreValues, 
-    AboutFeatures, AboutAchievements, AboutContactDetails, DescCarousal, MobCarousal,
-    Appointment, GetInTouch, ServiceHero
+    AboutHero, DescCarousal, MobCarousal,
+    Appointment, GetInTouch, ServiceHero, CTAButton, Inquiry
 )
 from django.utils.timesince import timesince
 
@@ -194,35 +193,6 @@ class AboutHeroSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'description']
 
 
-class AboutStatsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = AboutStats
-        fields = ['id', 'label', 'number']
-
-
-class AboutCoreValuesSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = AboutCoreValues
-        fields = ['id', 'name']
-
-
-class AboutFeaturesSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = AboutFeatures
-        fields = ['id', 'title', 'description']
-
-
-class AboutAchievementsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = AboutAchievements
-        fields = ['id', 'title', 'description']
-
-
-class AboutContactDetailsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = AboutContactDetails
-        fields = ['id', 'phone', 'mail', 'location', 'time']
-
 class AppointmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appointment
@@ -250,8 +220,12 @@ class ServiceHeroSerializer(serializers.ModelSerializer):
         model = ServiceHero
         fields = ['id', 'title', 'description']
         
-class InquirySerializer(serializers.Serializer):
-    full_name = serializers.CharField(max_length=255)
-    email = serializers.EmailField()
-    phone = serializers.CharField(max_length=20)
-    message = serializers.CharField()
+class InquirySerializer(serializers.ModelSerializer):
+     class Meta:
+        model = Inquiry
+        fields = '__all__'
+   
+class CTAButtonSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CTAButton
+        fields = '__all__'

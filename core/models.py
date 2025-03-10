@@ -361,56 +361,6 @@ class AboutHero(models.Model):
     def __str__(self):
         return self.title or 'No Title'
 
-class AboutStats(models.Model):
-    label = models.CharField(max_length=255)
-    number = models.CharField(max_length=255)
-    
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    
-    def __str__(self):
-        return self.label or 'No Label'
-    
-class AboutCoreValues(models.Model):
-    name = models.CharField(max_length=255)
-    
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    
-    def __str__(self):
-        return self.name or 'No Name'
-    
-class AboutFeatures(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField(null=True, blank=True)
-    
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    
-    def __str__(self):
-        return self.title or 'No Title'
-    
-class AboutAchievements(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField(null=True, blank=True)
-    
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    
-    def __str__(self):
-        return self.title or 'No Title'
-    
-class AboutContactDetails(models.Model):
-    phone = models.CharField(max_length=255)
-    mail = models.CharField(max_length=255)
-    location = models.CharField(max_length=255)
-    time = models.CharField(max_length=255)
-    
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    
-    def __str__(self):
-        return self.id or 'No Id'
     
 class Appointment(models.Model):
     full_name = models.CharField(max_length=225, null=True, blank=True)
@@ -421,6 +371,7 @@ class Appointment(models.Model):
     doctors = models.ForeignKey(Consultant, on_delete=models.SET_NULL, null=True, blank=True)
     preferred_date = models.CharField(max_length=225, null=True, blank=True)
     preferred_time = models.CharField(max_length=225, null=True, blank=True)
+    status =models.CharField(max_length=225, default="Pending", null=True, blank=True)
     
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
@@ -447,3 +398,20 @@ class ServiceHero(models.Model):
 
     def __str__(self):
         return self.title or 'No Title'
+    
+class CTAButton(models.Model):
+    single_title = models.CharField(max_length=255, null=True, blank=True)
+    title = models.CharField(max_length=255, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+class Inquiry(models.Model):
+    full_name = models.CharField(max_length=255, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
+    phone = models.CharField(max_length=255, null=True, blank=True)
+    message = models.TextField(null=True, blank=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
