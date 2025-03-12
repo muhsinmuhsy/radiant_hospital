@@ -262,6 +262,11 @@ class AppointmentReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
     
+class InquiryReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
+    permission_classes = [IsAuthenticated]
+    queryset = Inquiry.objects.all()
+    serializer_class = InquirySerializer
+    
 class GetInTouchReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = GetInTouch.objects.all()
     serializer_class = GetInTouchSerializer

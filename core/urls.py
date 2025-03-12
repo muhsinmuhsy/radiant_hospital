@@ -34,7 +34,8 @@ from .views import (
     InquiryView,
     CTAButtonViewSet,
     CTAButtonReadOnlyViewSet,
-    Counts
+    Counts,
+    InquiryReadOnlyViewSet
 )
 
 router = DefaultRouter()
@@ -95,6 +96,7 @@ router.register(r'readonly-appointments', AppointmentReadOnlyViewSet, basename='
 router.register(r'readonly-get-in-touch', GetInTouchReadOnlyViewSet, basename='readonly-get-in-touch')
 router.register(r'readonly-service-hero', ServiceHeroReadOnlyViewSet, basename='readonly-service-hero')
 router.register(r'readonly-cta-button', CTAButtonReadOnlyViewSet, basename='readonly-cta-button')
+router.register(r'readonly-inquiry', InquiryReadOnlyViewSet, basename='readonly-inquiry')
 
 
 urlpatterns = [

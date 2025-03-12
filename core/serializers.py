@@ -194,19 +194,10 @@ class AboutHeroSerializer(serializers.ModelSerializer):
 
 
 class AppointmentSerializer(serializers.ModelSerializer):
+    doctor_name = serializers.CharField(source='doctors.name', read_only=True)
     class Meta:
         model = Appointment
-        fields = [
-            "id",
-            "full_name",
-            "email",
-            "phone",
-            "age",
-            "address",
-            "doctors",
-            "preferred_date",
-            "preferred_time",
-        ]
+        fields = '__all__'
         
 
 class GetInTouchSerializer(serializers.ModelSerializer):
