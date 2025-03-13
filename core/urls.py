@@ -35,7 +35,8 @@ from .views import (
     CTAButtonViewSet,
     CTAButtonReadOnlyViewSet,
     Counts,
-    InquiryReadOnlyViewSet
+    InquiryReadOnlyViewSet,
+    UpdateAppointmentStatusView
 )
 
 router = DefaultRouter()
@@ -105,6 +106,7 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     
     path('appointment-create/', AppointmentCreateView.as_view(), name='appointment-create'),
+    path("appointments/<int:appointment_id>/status/", UpdateAppointmentStatusView.as_view(), name="update-appointment-status"),
     path("api/inquiry/", InquiryView.as_view(), name="inquiry_api"),
     
     path('counts/', Counts.as_view(), name='counts'),

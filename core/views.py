@@ -24,12 +24,13 @@ from .serializers import (
     VisionSerializer,
     AboutHeroSerializer,
     DescCarousalSerializer, MobCarousalSerializer, AppointmentSerializer, GetInTouchSerializer,
-    ServiceHeroSerializer, InquirySerializer, CTAButtonSerializer
+    ServiceHeroSerializer, InquirySerializer, CTAButtonSerializer, AppointmentStatusSerializer
 )
 from rest_framework import generics
 from django.core.mail import send_mail
 from django.conf import settings
 from django.utils import timezone
+from django.shortcuts import get_object_or_404
 
 # Login and Logout Views
 
@@ -287,6 +288,16 @@ class AppointmentCreateView(generics.CreateAPIView):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
     
+class UpdateAppointmentStatusView(APIView):
+    def patch(self, request, appointment_id):
+        appointment = get_object_or_404(Appointment, id=appointment_id)
+        serializer = AppointmentStatusSerializer(appointment, data=request.data, partial=True)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message": "Status updated successfully", "status": serializer.data["status"]}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 class InquiryView(APIView):
     def post(self, request):
         serializer = InquirySerializer(data=request.data)
@@ -324,3 +335,5 @@ class Counts(APIView):
             "total_inquiries": inquires,
             "total_doctors": doctors
         }, status=status.HTTP_200_OK)
+        
+        

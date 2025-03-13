@@ -21,7 +21,7 @@ class MobCarousalSerializer(serializers.ModelSerializer):
 class HomeAboutHeroSerializer(serializers.ModelSerializer):
     class Meta:
         model = HomeAboutHero
-        fields = ['id', 'title', 'description']
+        fields = '__all__'
 
 class HomeServiceHeaderSerializer(serializers.ModelSerializer):
     class Meta:
@@ -220,3 +220,8 @@ class CTAButtonSerializer(serializers.ModelSerializer):
     class Meta:
         model = CTAButton
         fields = '__all__'
+        
+class AppointmentStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Appointment
+        fields = ['status']

@@ -8,7 +8,9 @@ class User(AbstractUser):
     
     def __str__(self):
         return self.username
-    
+
+#######################################################################################################
+
 class DescCarousal(models.Model):
     image = models.FileField(upload_to="desc-carousal/")
     
@@ -18,6 +20,14 @@ class MobCarousal(models.Model):
 class HomeAboutHero(models.Model):
     title = models.CharField(max_length=255, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
+    
+    mini_text = models.CharField(max_length=255, null=True, blank=True)
+    
+    feature_one_name = models.CharField(max_length=255, null=True, blank=True)
+    feature_one_description = models.CharField(max_length=255, null=True, blank=True)
+    
+    feature_two_name = models.CharField(max_length=255, null=True, blank=True)
+    feature_two_description = models.CharField(max_length=255, null=True, blank=True)
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -170,7 +180,6 @@ class HomeSpecialitiesHeader(models.Model):
     def __str__(self):
         return self.title or 'No Title'
 
-    
 class Speciality(models.Model):
     CATEGORY_CHOICE  = (
         ("Surgical Procedures", "Surgical Procedures"),
@@ -238,7 +247,8 @@ class Testimonial(models.Model):
     
     def __str__(self):
         return f"Testimonial by {self.name} for {self.treatment}"
-    
+
+####################################################################################################### 
     
 class SpecialitiesHero(models.Model):
     simple_title = models.CharField(max_length=100, null=True, blank=True)
@@ -274,7 +284,9 @@ class SpecialitiesMainHeader(models.Model):
 
     def __str__(self):
         return self.title or 'No Title'
-    
+
+#######################################################################################################
+  
 class ConsultantsMainHeader(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
@@ -289,7 +301,9 @@ class ConsultantsMainHeader(models.Model):
 
     def __str__(self):
         return self.title or 'No Title'
-    
+
+#######################################################################################################
+   
 class ContactHero(models.Model):
     title_one = models.CharField(max_length=255)
     title_two =  models.CharField(max_length=255)
@@ -319,6 +333,16 @@ class QuickInfo(models.Model):
 
     def __str__(self):
         return self.contact or 'No Contact'
+
+class AboutHero(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.title or 'No Title'
     
 class Mission(models.Model):
     title = models.CharField(max_length=255)
@@ -350,18 +374,16 @@ class Vision(models.Model):
     def __str__(self):
         return self.title or 'No Title'
     
-    
-class AboutHero(models.Model):
-    title = models.CharField(max_length=255)
+class CTAButton(models.Model):
+    single_title = models.CharField(max_length=255, null=True, blank=True)
+    title = models.CharField(max_length=255, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
-    def __str__(self):
-        return self.title or 'No Title'
 
-    
+#######################################################################################################
+
 class Appointment(models.Model):
     full_name = models.CharField(max_length=225, null=True, blank=True)
     email = models.EmailField(max_length=225, null=True, blank=True)
@@ -375,7 +397,9 @@ class Appointment(models.Model):
     
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
-    
+
+#######################################################################################################
+
 class GetInTouch(models.Model):
     location = models.CharField(max_length=255, help_text="Physical address of the company")
     phone = models.CharField(max_length=20, help_text="Contact phone number")
@@ -384,7 +408,7 @@ class GetInTouch(models.Model):
 
     def __str__(self):
         return self.location
-    
+
 class ServiceHero(models.Model):
     title = models.CharField(max_length=255, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
@@ -399,13 +423,7 @@ class ServiceHero(models.Model):
     def __str__(self):
         return self.title or 'No Title'
     
-class CTAButton(models.Model):
-    single_title = models.CharField(max_length=255, null=True, blank=True)
-    title = models.CharField(max_length=255, null=True, blank=True)
-    description = models.TextField(null=True, blank=True)
-    
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+#######################################################################################################
     
 class Inquiry(models.Model):
     full_name = models.CharField(max_length=255, null=True, blank=True)

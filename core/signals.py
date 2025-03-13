@@ -4,6 +4,25 @@ from .models import *
 
 @receiver(post_migrate)
 def create_dummy_data(sender, **kwargs):
+    # Create dummy data for HomeAboutHero
+    if HomeAboutHero.objects.count() == 0:
+        HomeAboutHero.objects.create(
+            title="This is the title for HomeAboutHero",
+            description="This is the description for HomeAboutHero.",
+            mini_text = "none",
+            feature_one_name = "none",
+            feature_one_description = "none",
+            feature_two_name = "none",
+            feature_two_description = "none",
+        )
+        
+    # Create dummy data for HomeServiceHeader
+    if HomeServiceHeader.objects.count() == 0:
+        HomeServiceHeader.objects.create(
+            title="This is the title for HomeServiceHeader",
+            description="This is the description for HomeServiceHeader."
+        )
+        
     # Create dummy data for HomeConsultantHeader
     if HomeConsultantHeader.objects.count() == 0:
         HomeConsultantHeader.objects.create(
