@@ -260,12 +260,12 @@ class AboutHeroReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
 
 class AppointmentReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = Appointment.objects.all()
+    queryset = Appointment.objects.all().order_by('-id')
     serializer_class = AppointmentSerializer
     
 class InquiryReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = Inquiry.objects.all()
+    queryset = Inquiry.objects.all().order_by('-id')
     serializer_class = InquirySerializer
     
 class GetInTouchReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
