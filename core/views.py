@@ -1,5 +1,6 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
+from .permissions import IsSuperUser
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
@@ -24,7 +25,8 @@ from .serializers import (
     VisionSerializer,
     AboutHeroSerializer,
     DescCarousalSerializer, MobCarousalSerializer, AppointmentSerializer, GetInTouchSerializer,
-    ServiceHeroSerializer, InquirySerializer, CTAButtonSerializer, AppointmentStatusSerializer
+    ServiceHeroSerializer, InquirySerializer, CTAButtonSerializer, AppointmentStatusSerializer,
+    StaffUserSerializer
 )
 from rest_framework import generics
 from django.core.mail import send_mail
@@ -57,120 +59,120 @@ class LogoutView(APIView):
 # Read-Write ViewSets (CRUD operations)
 
 class DescCarousalViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     queryset = DescCarousal.objects.all()
     serializer_class = DescCarousalSerializer
 
 class MobCarousallViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     queryset = MobCarousal.objects.all()
     serializer_class = MobCarousalSerializer
 
 class HomeAboutHeroViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     queryset = HomeAboutHero.objects.all()
     serializer_class = HomeAboutHeroSerializer
 
 class HomeServiceHeaderViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     queryset = HomeServiceHeader.objects.all()
     serializer_class = HomeServiceHeaderSerializer
 
 class ServiceViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     queryset = Service.objects.all()
     serializer_class = ServiceSerializer
 
 class HomeConsultantHeaderViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     queryset = HomeConsultantHeader.objects.all()
     serializer_class = HomeConsultantHeaderSerializer
 
 class ConsultantViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     queryset = Consultant.objects.all()
     serializer_class = ConsultantSerializer
 
 class BlogViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     queryset = Blog.objects.all().order_by('-id')
     serializer_class = BlogSerializer
 
 
 class HomeSpecialitiesHeaderViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     queryset = HomeSpecialitiesHeader.objects.all()
     serializer_class = HomeSpecialitiesHeaderSerializer
 
 class SpecialitiesViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     queryset = Speciality.objects.all()
     serializer_class = SpecialitySerializer
 
 class EquipmentViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     queryset = Equipment.objects.all()
     serializer_class = EquipmentSerializer
 
 class TestimonialViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     queryset = Testimonial.objects.all()
     serializer_class = TestimonialSerializer
 
 class SpecialitiesHeroViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     queryset = SpecialitiesHero.objects.all()
     serializer_class = SpecialitiesHeroSerializer
 
 class SpecialitiesMainHeaderViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     queryset = SpecialitiesMainHeader.objects.all()
     serializer_class = SpecialitiesMainHeaderSerializer
 
 class ConsultantsMainHeaderViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     queryset = ConsultantsMainHeader.objects.all()
     serializer_class = ConsultantsMainHeaderSerializer
 
 class ContactHeroViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     queryset = ContactHero.objects.all()
     serializer_class = ContactHeroSerializer
 
 class QuickInfoViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     queryset = QuickInfo.objects.all()
     serializer_class = QuickInfoSerializer
 
 class MissionViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     queryset = Mission.objects.all()
     serializer_class = MissionSerializer
 
 class VisionViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     queryset = Vision.objects.all()
     serializer_class = VisionSerializer
 
     
 class AboutHeroViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     queryset = AboutHero.objects.all()
     serializer_class = AboutHeroSerializer
 
     
 class GetInTouchViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     queryset = GetInTouch.objects.all()
     serializer_class = GetInTouchSerializer
     
 class ServiceHeroViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     queryset = ServiceHero.objects.all()
     serializer_class = ServiceHeroSerializer
     
 class CTAButtonViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     queryset = CTAButton.objects.all()
     serializer_class = CTAButtonSerializer
     
@@ -257,14 +259,13 @@ class AboutHeroReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = AboutHero.objects.all()
     serializer_class = AboutHeroSerializer
 
-
 class AppointmentReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [IsAuthenticated]
     queryset = Appointment.objects.all().order_by('-id')
     serializer_class = AppointmentSerializer
     
 class InquiryReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     queryset = Inquiry.objects.all().order_by('-id')
     serializer_class = InquirySerializer
     
@@ -289,6 +290,7 @@ class AppointmentCreateView(generics.CreateAPIView):
     serializer_class = AppointmentSerializer
     
 class UpdateAppointmentStatusView(APIView):
+    permission_classes = [IsAuthenticated]
     def patch(self, request, appointment_id):
         appointment = get_object_or_404(Appointment, id=appointment_id)
         serializer = AppointmentStatusSerializer(appointment, data=request.data, partial=True)
@@ -322,7 +324,7 @@ class InquiryView(APIView):
     
     
 class Counts(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsSuperUser]
     def get(self, request):
         appoiments = Appointment.objects.count()
         today_appoiments = Appointment.objects.filter(created_at__date=timezone.now().date()).count()
@@ -336,4 +338,34 @@ class Counts(APIView):
             "total_doctors": doctors
         }, status=status.HTTP_200_OK)
         
-        
+
+# staff user
+class StaffUserListView(generics.ListAPIView):
+    queryset = User.objects.filter(is_staff=True).exclude(is_superuser=True)
+    serializer_class = StaffUserSerializer
+    permission_classes = [IsAuthenticated, IsSuperUser]
+
+class StaffUserCreateView(generics.CreateAPIView):
+    queryset = User.objects.filter(is_staff=True)
+    serializer_class = StaffUserSerializer
+    permission_classes = [IsAuthenticated, IsSuperUser]
+
+class StaffUserDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.filter(is_staff=True)
+    serializer_class = StaffUserSerializer
+    permission_classes = [IsAuthenticated, IsSuperUser]
+    lookup_field = 'id'  # Retrieve & update by user ID
+
+class CurrentUser(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request):
+        user = request.user
+        data = {
+            "id": user.id,
+            "username": user.username,
+            "email": user.email,
+            "contact_number": user.contact_number,
+            "is_staff": user.is_staff,
+            "is_superuser": user.is_superuser
+        }
+        return Response(data, status=status.HTTP_200_OK)

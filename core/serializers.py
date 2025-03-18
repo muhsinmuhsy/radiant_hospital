@@ -4,7 +4,7 @@ from .models import (
     HomeConsultantHeader, Equipment, EquipmentSpec, Testimonial, SpecialitiesHero, SpecialitiesMainHeader,
     ConsultantsMainHeader, ContactHero, QuickInfo, Mission, Vision,
     AboutHero, DescCarousal, MobCarousal,
-    Appointment, GetInTouch, ServiceHero, CTAButton, Inquiry
+    Appointment, GetInTouch, ServiceHero, CTAButton, Inquiry, User
 )
 from django.utils.timesince import timesince
 
@@ -225,3 +225,28 @@ class AppointmentStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appointment
         fields = ['status']
+
+class StaffUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'contact_number', 'password']
+        extra_kwargs = {'password': {'write_only': True, 'required': False}}
+
+    def create(self, validated_data):
+        validated_data['is_staff'] = True  # Ensure the user is marked as staff
+        user = User.objects.create_user(**validated_data)
+        return user
+
+    def update(self, instance, validated_data):
+        # Update fields
+        instance.username = validated_data.get('username', instance.username)
+        instance.email = validated_data.get('email', instance.email)
+        instance.contact_number = validated_data.get('contact_number', instance.contact_number)
+        
+        # Handle password update
+        password = validated_data.get('password', None)
+        if password:
+            instance.set_password(password)
+
+        instance.save()
+        return instance
