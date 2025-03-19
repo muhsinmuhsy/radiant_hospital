@@ -37,7 +37,7 @@ from .views import (
     Counts,
     InquiryReadOnlyViewSet,
     UpdateAppointmentStatusView,
-    StaffUserCreateView, StaffUserListView, StaffUserDetailView, CurrentUser
+    StaffUserCreateView, StaffUserListView, StaffUserDetailView, CurrentUser, ChangePasswordView
 )
 
 router = DefaultRouter()
@@ -116,5 +116,7 @@ urlpatterns = [
     path('staff-users/create/', StaffUserCreateView.as_view(), name='staff-user-create'),
     path('staff-users/<int:id>/', StaffUserDetailView.as_view(), name='staff-user-detail'),
     path('current-user/', CurrentUser.as_view(), name='current-user'),
+
+    path('change-password/', ChangePasswordView.as_view(), name='change-password'),
 
 ]

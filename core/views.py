@@ -26,7 +26,7 @@ from .serializers import (
     AboutHeroSerializer,
     DescCarousalSerializer, MobCarousalSerializer, AppointmentSerializer, GetInTouchSerializer,
     ServiceHeroSerializer, InquirySerializer, CTAButtonSerializer, AppointmentStatusSerializer,
-    StaffUserSerializer
+    StaffUserSerializer, ChangePasswordSerializer
 )
 from rest_framework import generics
 from django.core.mail import send_mail
@@ -265,7 +265,7 @@ class AppointmentReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = AppointmentSerializer
     
 class InquiryReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    permission_classes = [IsAuthenticated, IsSuperUser]
+    permission_classes = [IsAuthenticated]
     queryset = Inquiry.objects.all().order_by('-id')
     serializer_class = InquirySerializer
     
@@ -369,3 +369,13 @@ class CurrentUser(APIView):
             "is_superuser": user.is_superuser
         }
         return Response(data, status=status.HTTP_200_OK)
+    
+class ChangePasswordView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        serializer = ChangePasswordSerializer(data=request.data, context={'request': request})
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message": "Password updated successfully"}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
