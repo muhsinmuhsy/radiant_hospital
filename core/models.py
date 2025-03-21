@@ -210,6 +210,7 @@ class Equipment(models.Model):
     description = models.TextField()
     image = models.ImageField(upload_to='equipment/')
     color = models.CharField(max_length=50)
+    order = models.PositiveIntegerField(default=0)
     
     class Meta:
         verbose_name = "Equipment"

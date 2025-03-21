@@ -212,7 +212,7 @@ class BlogReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = BlogReadonlySerializer
 
 class EquipmentReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Equipment.objects.all()
+    queryset = Equipment.objects.all().order_by('order')
     serializer_class = EquipmentReadonlySerializer
 
 class HomeSpecialitiesHeaderReadOnlyViewSet(viewsets.ReadOnlyModelViewSet):
