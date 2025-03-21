@@ -183,7 +183,7 @@ class HomeSpecialitiesHeader(models.Model):
 class Speciality(models.Model):
     CATEGORY_CHOICE  = (
         ("Surgical Procedures", "Surgical Procedures"),
-        ("Endoscopic Procedures", "Endoscopic Procedures"),
+        ("Endoscopic Surgery", "Endoscopic Surgery"),
     )
     src = models.FileField(upload_to='speciality/', null=True, blank=True)
     category = models.CharField(max_length=255, null=True, blank=True, choices=CATEGORY_CHOICE)
