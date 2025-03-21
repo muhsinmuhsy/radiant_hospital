@@ -85,7 +85,7 @@ class EquipmentReadonlySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Equipment
-        fields = ['id', 'name', 'short_desc', 'description', 'image', 'color', 'specs']
+        fields = ['id', 'name', 'short_desc', 'description', 'image', 'color', 'specs', 'order']
 
     def get_specs(self, obj):
         return {spec.spec_name: spec.spec_value for spec in obj.specifications.all()}
