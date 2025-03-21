@@ -300,6 +300,14 @@ class UpdateAppointmentStatusView(APIView):
             return Response({"message": "Status updated successfully", "status": serializer.data["status"]}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+class DeleteAppointmentView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, appointment_id):
+        appointment = get_object_or_404(Appointment, id=appointment_id)
+        appointment.delete()
+        return Response({"message": "Appointment deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+    
 class InquiryView(APIView):
     def post(self, request):
         serializer = InquirySerializer(data=request.data)

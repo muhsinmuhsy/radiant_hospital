@@ -37,7 +37,8 @@ from .views import (
     Counts,
     InquiryReadOnlyViewSet,
     UpdateAppointmentStatusView,
-    StaffUserCreateView, StaffUserListView, StaffUserDetailView, CurrentUser, ChangePasswordView
+    StaffUserCreateView, StaffUserListView, StaffUserDetailView, CurrentUser, ChangePasswordView,
+    DeleteAppointmentView
 )
 
 router = DefaultRouter()
@@ -108,6 +109,7 @@ urlpatterns = [
     
     path('appointment-create/', AppointmentCreateView.as_view(), name='appointment-create'),
     path("appointments/<int:appointment_id>/status/", UpdateAppointmentStatusView.as_view(), name="update-appointment-status"),
+    path('appointments/<int:appointment_id>/delete/', DeleteAppointmentView.as_view(), name='delete-appointment'),
     path("api/inquiry/", InquiryView.as_view(), name="inquiry_api"),
     
     path('counts/', Counts.as_view(), name='counts'),
