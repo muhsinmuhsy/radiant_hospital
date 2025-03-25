@@ -332,7 +332,7 @@ class InquiryView(APIView):
     
     
 class Counts(APIView):
-    permission_classes = [IsAuthenticated, IsSuperUser]
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         appoiments = Appointment.objects.count()
         today_appoiments = Appointment.objects.filter(created_at__date=timezone.now().date()).count()
